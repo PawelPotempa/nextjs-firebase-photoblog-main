@@ -1,40 +1,81 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
+import ReactPaginate from "react-paginate";
 import useFirestore from "../src/hooks/useFirestore";
+import { useAuth } from "../src/hooks/AuthContext";
+import {
+  Main,
+  Wrapper,
+  Post,
+  Delete,
+  Edit,
+  Thumbnail,
+  Content,
+  PaginationContainer,
+  AddPost,
+  AddPostIcon,
+} from "../styles/blogElements";
 
-const HomePage = () => {
+function BlogPost() {
+  const { currentUser } = useAuth();
+  const [pageNumber, setPageNumber] = useState(0);
+
+  // Fetch document data from Firestore.
   const { docs } = useFirestore("posts");
 
-  return (
-    <div>
-      <h1>Blog Posts</h1>
-      {docs.map((post) => (
-        <article key={post.slug}>
-          <Image
-            src={post.coverImage}
-            alt={post.coverImageAlt}
-            width={1000}
-            height={500}
-            quality={50}
-            loading="eager"
-            // blurDataURL={post.coverImage}
-            // placeholder="blur"
-          />
-          <div>
-            <h2>{post.title}</h2>
-            {/* <span>{post.createdAt.toDate().toDateString()}</span> */}
-            <p
-              dangerouslySetInnerHTML={{
-                __html: `${post.content.substring(0, 200)}...`,
-              }}
-            ></p>
-            <a href={`/post/${post.slug}`}>Continue reading</a>
-            <a href={`/edit/${post.slug}`}>Edit me</a>
-          </div>
-        </article>
-      ))}
-    </div>
-  );
-};
+  // Max allowed amount of posts per page.
+  const postsPerPage = 12;
+  const postsSeen = pageNumber * postsPerPage;
 
-export default HomePage;
+  // Displaying posts based on the page we're on.
+  const displayPosts = docs
+    .slice(postsSeen, postsSeen + postsPerPage)
+    .map((post) => {
+      return (
+        <Post key={post.slug} posts={docs}>
+          <a
+            href={`/post/${post.slug}`}
+            style={{ color: "inherit", textDecoration: "inherit" }}
+          >
+            <Thumbnail alt={post.coverImageAlt} src={post.coverImage} />
+            <Content>{post.content}</Content>
+          </a>
+        </Post>
+      );
+    });
+
+  // Amount of pages defined based on the length of the fetched document.
+  const pageCount = Math.ceil(docs.length / postsPerPage);
+
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
+
+  return (
+    <Main>
+      <Wrapper posts={docs}>{displayPosts}</Wrapper>
+      <PaginationContainer>
+        <ReactPaginate
+          previousLabel={""}
+          nextLabel={""}
+          pageCount={pageCount}
+          onPageChange={changePage}
+          containerClassName={"pagWrapper"}
+          pageRangeDisplayed={10}
+          pageClassName={"pagBtn"}
+          previousClassName={"prevBtn"}
+          nextClassName={"nextBtn"}
+          disabledClassName={"pagDisabled"}
+          activeClassName={"pagActive"}
+        />
+      </PaginationContainer>
+      {currentUser && (
+        <AddPost href="/create">
+          <AddPostIcon />
+        </AddPost>
+      )}
+    </Main>
+  );
+}
+
+export default BlogPost;

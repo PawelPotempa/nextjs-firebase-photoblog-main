@@ -170,6 +170,7 @@ export const PaginationContainer = styled.div`
 
 export const AddPostIcon = styled(FaPlus)`
   margin-top: 22px;
+  z-index: 999;
 `;
 
 export const AddPost = styled.a`
@@ -184,5 +185,5 @@ export const AddPost = styled.a`
   border-radius: 50px;
   text-align: center;
   box-shadow: 2px 2px 3px #999;
-  z-index: 100;
+  z-index: 1000;
 `;

@@ -13,7 +13,7 @@ const useStorage = (file) => {
 
   useEffect(() => {
     // The "if statement" below is used as a means of using that hook in the future. Previously it would immediately
-    // crash due to no file being available, with the if statement it should work properly, and would be a much cleaner approach.
+    // crash due to no file being available, with the if statement it should work properly, and would probably be a much cleaner approach.
     if (file) {
       // References
       const storageRef = ref(storage, file.name);
@@ -35,7 +35,6 @@ const useStorage = (file) => {
             url,
             createdAt,
           });
-          console.log(docRef.url);
           setUrl(url);
         }
       );

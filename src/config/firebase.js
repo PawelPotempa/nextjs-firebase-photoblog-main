@@ -15,6 +15,7 @@ import {
   deleteDoc,
   updateDoc,
 } from "firebase/firestore";
+import { generateUniqueFileName, uuidv4 } from "../utils/utilityMethods.js";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -37,7 +38,7 @@ export const storage = getStorage(app);
 export const db = getFirestore();
 
 export async function createPost(post, file, fileName) {
-  const storageRef = ref(storage, fileName);
+  const storageRef = ref(storage, generateUniqueFileName(fileName));
   const uploadTask = uploadBytesResumable(storageRef, file);
 
   uploadTask.on(
@@ -65,7 +66,7 @@ export async function createPost(post, file, fileName) {
       await addDoc(collection(db, "posts"), {
         createdAt,
         title: post.title,
-        slug: post.slug,
+        slug: `${post.slug.replace(/\s+/g, "-")}-${uuidv4().split("-")[0]}`,
         coverImage: url,
         coverImageAlt: post.coverImageAlt,
         content: post.content,
@@ -116,9 +117,8 @@ export async function deletePost(postId) {
 export async function updatePost(post, file, fileName, postId) {
   // Reach the post will be updated
   const updatedPost = doc(db, `/posts/${postId}`);
-  console.log(typeof file);
   //* Defines app behaviour if user change the post picture
-  if (typeof file !== "object") {
+  if (file !== null) {
     // Create a reference to the correct distant repository
     const imagesStorageRef = ref(storage, fileName);
     const uploadTask = uploadBytesResumable(imagesStorageRef, file);
@@ -152,9 +152,9 @@ export async function updatePost(post, file, fileName, postId) {
       },
       async () => {
         const url = await getDownloadURL(imagesStorageRef);
-        const createdAt = serverTimestamp();
+        console.log(url);
+        // const createdAt = serverTimestamp();
         await updateDoc(updatedPost, {
-          createdAt,
           title: post.title,
           content: post.content,
           coverImage: url,

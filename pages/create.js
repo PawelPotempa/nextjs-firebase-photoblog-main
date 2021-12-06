@@ -1,12 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
-import { useAuth } from "../src/hooks/AuthContext";
-import useStorage from "../src/hooks/useStorage";
+import { protectedRoute } from "../src/hooks/useProtectedRoute";
 import { createPost } from "../src/config/firebase";
 
 const Create = () => {
   const router = useRouter();
-  const { currentUser, loading } = useAuth();
 
   const [formValues, setFormValues] = useState({
     title: "",
@@ -17,14 +15,14 @@ const Create = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [file, setFile] = useState(null);
-  const [typeError, setTypeError] = useState(null);
   const [preview, setPreview] = useState(null);
 
   const fileInputRef = useRef();
 
+  // File types allowed for the thumbnail.
   const types = ["image/png", "image/jpeg", "image/jpg"];
 
-  // The useEffect code below is responsible for showing the preview of the selected file.
+  // Showing the preview of the selected file.
   useEffect(() => {
     if (file) {
       const reader = new FileReader();
@@ -37,51 +35,32 @@ const Create = () => {
     }
   }, [file]);
 
-  if (loading) {
-    return null;
-  }
-
-  if (!currentUser && typeof window !== "undefined") {
-    router.push("/404");
-    return null;
-  }
-
-  const changeHandler = (e) => {
+  // Handling file input changes.
+  const fileChangeHandler = (e) => {
     let selected = e.target.files[0];
 
+    // Checking if file type is contained in [types].
     if (selected && types.includes(selected.type)) {
       setFile(selected);
-      setTypeError("");
     } else {
       setFile(null);
-      setTypeError("Please select an image file (png or jpg)");
+      alert("Please select an image file (png or jpg)");
     }
   };
 
-  /*
-  This is the function we're passing to each control so we can capture
-  the value in it and store it in our `formValues` variable.
-  */
-  const handleChange = (e) => {
+  // Function passed to every input window in order to capture its value.
+  const valueChangeHandler = (e) => {
     const id = e.target.id;
     const newValue = e.target.value;
     setFormValues({ ...formValues, [id]: newValue });
   };
 
-  /*
-  This function is passed to the <form> and specifies what happens when
-  the form is submitted. For now, we're going to log our `formValues`
-  to verify that they are being managed correctly.
-  
-  Side note: we do not need to set an `onClick` for the <button> at the
-  end of the form because it has type="submit". This allows us to click
-  to submit the form or press the Enter key to submit it.
-  */
-  const handleSubmit = (e) => {
-    // This prevents the default functionality of submitting a form
+  // Function responsible for handling the form submition.
+  const submitHandler = (e) => {
+    // This prevents the default functionality of submitting a form.
     e.preventDefault();
 
-    // Check if there are any missing values.
+    // Checks if there are any missing values.
     let missingValues = [];
     Object.entries(formValues).forEach(([key, value]) => {
       if (!value) {
@@ -90,7 +69,7 @@ const Create = () => {
     });
 
     // Alert and prevent the post from being created if there are missing values.
-    if (missingValues.length > 1) {
+    if (missingValues.length > 1 || file === null) {
       alert(`You're missing these fields: ${missingValues.join(", ")}`);
       return;
     }
@@ -100,7 +79,7 @@ const Create = () => {
 
     const imageName = file.name;
 
-    // Start the attempt to create a new post.
+    // Attempt to create a new post.
     createPost(formValues, file, imageName)
       .then(() => {
         // Update the isLoading state and navigate to the home page.
@@ -117,7 +96,7 @@ const Create = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={submitHandler}>
         <h1>Create a new post</h1>
         <div>
           <label htmlFor="title">Title</label>
@@ -125,7 +104,7 @@ const Create = () => {
             id="title"
             type="text"
             value={formValues.title}
-            onChange={handleChange}
+            onChange={valueChangeHandler}
           />
         </div>
         <div>
@@ -134,7 +113,7 @@ const Create = () => {
             id="slug"
             type="text"
             value={formValues.slug}
-            onChange={handleChange}
+            onChange={valueChangeHandler}
           />
         </div>
         <div>
@@ -145,7 +124,7 @@ const Create = () => {
             ref={fileInputRef}
             value={formValues.coverImage}
             accept="image/*"
-            onChange={changeHandler}
+            onChange={fileChangeHandler}
           />
         </div>
         <div>
@@ -154,7 +133,7 @@ const Create = () => {
             id="coverImageAlt"
             type="text"
             value={formValues.coverImageAlt}
-            onChange={handleChange}
+            onChange={valueChangeHandler}
           />
         </div>
         <div>
@@ -162,7 +141,7 @@ const Create = () => {
           <textarea
             id="content"
             value={formValues.content}
-            onChange={handleChange}
+            onChange={valueChangeHandler}
           />
         </div>
         <button type="submit" disabled={isLoading}>
@@ -174,4 +153,4 @@ const Create = () => {
   );
 };
 
-export default Create;
+export default protectedRoute(Create);

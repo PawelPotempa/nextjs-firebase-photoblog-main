@@ -13,8 +13,6 @@ const useFirestore = (col) => {
         documents.push({ ...doc.data(), id: doc.id });
       });
       setDocs(documents);
-      console.log(documents);
-      console.log(docs);
     });
     return () => unsubscribe();
   }, [collection]);
