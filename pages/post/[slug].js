@@ -187,7 +187,6 @@ const PostPage = ({ post }) => {
 
 export async function getStaticPaths() {
   const posts = await getPosts();
-  console.log(posts);
   const paths = posts.map((post) => ({
     params: { slug: post.slug },
   }));
@@ -198,12 +197,12 @@ export async function getStaticPaths() {
 // Generates props for the post page
 export async function getStaticProps({ params }) {
   const post = await getPostBySlug(params.slug);
-  console.log(post);
 
   return {
     props: {
       post,
     },
+    revalidate: 10,
   };
 }
 
