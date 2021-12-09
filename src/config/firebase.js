@@ -72,7 +72,7 @@ export async function createPost(post, file, fileName) {
         slug: `${post.slug.replace(/\s+/g, "-")}-${uuidv4().split("-")[0]}`,
         createdAt: JSON.stringify(createdAt.toMillis()),
         thumbnail: url,
-        thumbnailAlt: post.coverImageAlt,
+        thumbnailAlt: post.thumbnailAlt,
         content: post.content,
       });
       console.log(url);
@@ -168,14 +168,14 @@ export async function updatePost(post, file, fileName, postId) {
           title: post.title,
           createdAt: JSON.stringify(Timestamp.now().toMillis()),
           thumbnail: url,
-          thumbnailAlt: post.coverImageAlt,
+          thumbnailAlt: post.thumbnailAlt,
           content: post.content,
         });
       }
     );
   } else {
     //* Defines app's behaviour if the picture stay the same
-    //* coverImage is not referenced on updateDoc to prevent errors
+    //* thumbnail is not referenced on updateDoc to prevent errors
     await updateDoc(updatedPost, {
       title: post.title,
       content: post.content,
