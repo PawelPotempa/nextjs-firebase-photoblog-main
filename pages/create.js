@@ -117,9 +117,9 @@ const Create = () => {
           />
         </div>
         <div>
-          <label htmlFor="coverImage">Cover Image URL</label>
+          <label htmlFor="thumbnail">Thumbnail URL</label>
           <input
-            id="coverImage"
+            id="thumbnail"
             type="file"
             ref={fileInputRef}
             value={formValues.thumbnail}
@@ -128,9 +128,9 @@ const Create = () => {
           />
         </div>
         <div>
-          <label htmlFor="coverImageAlt">Cover Image Alt</label>
+          <label htmlFor="thumbnailAlt">Thumbnail Alt</label>
           <input
-            id="coverImageAlt"
+            id="thumbnailAlt"
             type="text"
             value={formValues.thumbnailAlt}
             onChange={valueChangeHandler}

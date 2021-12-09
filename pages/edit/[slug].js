@@ -10,8 +10,8 @@ const Edit = () => {
   const [formValues, setFormValues] = useState({
     title: "",
     slug: "",
-    coverImage: "",
-    coverImageAlt: "",
+    thumbnail: "",
+    thumbnailAlt: "",
     content: "",
   });
 
@@ -48,7 +48,7 @@ const Edit = () => {
         title: `${doc[0].title}`,
         slug: `${doc[0].slug}`,
         thumbnail: "",
-        thumbnailAlt: `${doc[0].coverImageAlt}`,
+        thumbnailAlt: `${doc[0].thumbnailAlt}`,
         content: `${doc[0].content}`,
       });
     }
@@ -145,20 +145,20 @@ const Edit = () => {
         <div>
           <label htmlFor="thumbnail">Thumbnail</label>
           <input
-            id="coverImage"
+            id="thumbnail"
             type="file"
             ref={fileInputRef}
-            value={formValues.coverImage}
+            value={formValues.thumbnail}
             accept="image/*"
             onChange={fileChangeHandler}
           />
         </div>
         <div>
-          <label htmlFor="coverImageAlt">Cover Image Alt</label>
+          <label htmlFor="thumbnailAlt">Thumbnail Alt</label>
           <input
-            id="coverImageAlt"
+            id="thumbnailAlt"
             type="text"
-            value={formValues.coverImageAlt}
+            value={formValues.thumbnailAlt}
             onChange={valueChangeHandler}
           />
         </div>

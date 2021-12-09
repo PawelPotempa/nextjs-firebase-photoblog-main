@@ -173,7 +173,7 @@ const PostPage = ({ post }) => {
         <>
           <AddPostLabel>
             <AddPost
-              id="coverImage"
+              id="thumbnail"
               type="file"
               multiple
               accept="image/*"
