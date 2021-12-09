@@ -9,8 +9,8 @@ const Create = () => {
   const [formValues, setFormValues] = useState({
     title: "",
     slug: "",
-    coverImage: "",
-    coverImageAlt: "",
+    thumbnail: "",
+    thumbnailAlt: "",
     content: "",
   });
   const [isLoading, setIsLoading] = useState(false);
@@ -122,7 +122,7 @@ const Create = () => {
             id="coverImage"
             type="file"
             ref={fileInputRef}
-            value={formValues.coverImage}
+            value={formValues.thumbnail}
             accept="image/*"
             onChange={fileChangeHandler}
           />
@@ -132,7 +132,7 @@ const Create = () => {
           <input
             id="coverImageAlt"
             type="text"
-            value={formValues.coverImageAlt}
+            value={formValues.thumbnailAlt}
             onChange={valueChangeHandler}
           />
         </div>
