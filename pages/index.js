@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import {
   HeroContainer,
   ArrowRight,
   ArrowLeft,
   SlideActive,
   Slide,
-  Image,
+  HeroImage,
 } from "../styles/heroElements";
 
 const HeroSection = () => {
   const SliderData = [
     {
-      image:
-        "https://firebasestorage.googleapis.com/v0/b/nextjs-photoblog.appspot.com/o/11.jpg?alt=media&token=c56d1099-22c9-4fc7-ae26-27a472437448",
+      image: `/portrait.jpg`,
     },
     {
       image:
@@ -39,7 +39,7 @@ const HeroSection = () => {
   useEffect(() => {
     const id = setTimeout(() => {
       nextSlide();
-    }, 3000);
+    }, 8000);
     return () => {
       clearTimeout(id);
     };
@@ -56,7 +56,19 @@ const HeroSection = () => {
         return (
           <>
             {index === counter ? <SlideActive /> : <Slide />}
-            {index === counter && <Image src={slide.image} />}
+            {index === counter && (
+              <HeroImage>
+                <Image
+                  src={slide.image}
+                  height={3112}
+                  width={4096}
+                  objectFit="cover"
+                  placeholder="blur"
+                  blurDataURL={slide.image}
+                  loading="eager"
+                />
+              </HeroImage>
+            )}
           </>
         );
       })}

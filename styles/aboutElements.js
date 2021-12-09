@@ -3,7 +3,9 @@ import { FaFacebookSquare } from "react-icons/fa";
 import { FiInstagram } from "react-icons/fi";
 
 export const AboutContainer = styled.div`
-  height: 100vh;
+  font-size: 0.8rem;
+  margin-top: 60px;
+  height: calc(100vh - 60px);
   padding: 60px;
   display: grid;
   align-self: center;
@@ -12,23 +14,17 @@ export const AboutContainer = styled.div`
 
   @media screen and (max-width: 1024px) {
     grid-template-columns: repeat(3, 1fr);
-    /* grid-template-rows: repeat(4, 1fr); */
     transition: 0.8s all ease;
-    /* margin: 80px 40px 40px 40px; */
   }
 
   @media screen and (max-width: 768px) {
+    padding: 40px;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
     transition: 0.8s all ease;
-    /* margin: 80px 20px 20px 20px; */
   }
 
   @media screen and (max-width: 600px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, 1fr);
-    transition: 0.8s all ease;
-    /* margin: 80px 20px 0px 20px; */
+    padding: 20px;
   }
 `;
 export const AboutDesc = styled.div`
@@ -38,6 +34,22 @@ export const AboutDesc = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  @media screen and (max-width: 1024px) {
+    font-size: 0.7rem;
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 0.6rem;
+    padding-top: 0;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 0.5rem;
+
+    p {
+      font-size: 0.6rem;
+    }
+  }
 `;
 export const AboutPersonal = styled.div`
   padding: 5vw;
@@ -46,43 +58,77 @@ export const AboutPersonal = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* justify-content: space-between; */
+
+  @media screen and (max-width: 768px) {
+    grid-row: 1;
+    grid-column: 1/3;
+  }
 `;
-export const AboutPhoto = styled.img`
-  /* padding: 2rem; */
-  /* justify-content:  */
-  width: 400px;
-  height: 400px;
+export const AboutPhoto = styled.div`
+  width: 300px;
+  height: 300px;
   object-fit: cover;
   border-radius: 50%;
+  overflow: hidden;
+
+  @media screen and (max-width: 1024px) {
+    width: 200px;
+    height: 200px;
+  }
+  @media screen and (max-width: 425px) {
+    width: 140px;
+    height: 140px;
+  }
 `;
+
 export const AboutDataContainer = styled.div`
   text-align: center;
 `;
+
 export const AboutData = styled.p`
   padding: 5px;
+
+  @media screen and (max-width: 425px) {
+    padding: 0;
+  }
 `;
-export const AboutSocials = styled.div``;
+
+export const AboutSocials = styled.div`
+  margin-bottom: 0.5rem;
+`;
+
 export const AboutFB = styled(FaFacebookSquare)`
   font-size: 3rem;
-  margin: 0 10px;
+  margin: 10px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 
   &:hover {
     transform: scale(1.1);
+  }
+
+  @media screen and (max-width: 425px) {
+    font-size: 2rem;
+    margin: 5px;
   }
 `;
 export const AboutIG = styled(FiInstagram)`
   font-size: 3rem;
-  margin: 0 10px;
+  margin: 10px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 
   &:hover {
     transform: scale(1.1);
   }
+
+  @media screen and (max-width: 425px) {
+    font-size: 2rem;
+    margin: 5px;
+  }
 `;
+
+export const AboutSocialLink = styled.a``;
 
 export const AboutContact = styled.button`
   border-radius: 50px;
@@ -103,5 +149,11 @@ export const AboutContact = styled.button`
     background: #fff;
     color: #010606;
     border-color: #000;
+  }
+
+  @media screen and (max-width: 425px) {
+    padding: 8px 32px;
+    color: #fff;
+    font-size: 12px;
   }
 `;

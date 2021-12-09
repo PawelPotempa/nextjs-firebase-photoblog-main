@@ -30,7 +30,7 @@ export const ArrowLeft = styled(FaArrowAltCircleLeft)`
   top: 50%;
   left: 32px;
   font-size: 3rem;
-  color: #000;
+  color: rgba(255, 255, 255, 0.5);
   z-index: 10;
   cursor: pointer;
   user-select: none;
@@ -41,7 +41,7 @@ export const ArrowRight = styled(FaArrowAltCircleRight)`
   top: 50%;
   right: 32px;
   font-size: 3rem;
-  color: #000;
+  color: rgba(255, 255, 255, 0.5);
   z-index: 10;
   cursor: pointer;
   user-select: none;
@@ -57,7 +57,9 @@ export const Slide = styled.div`
   transition-duration: 1s ease;
 `;
 
-export const Image = styled.img`
+export const HeroImage = styled.div`
+  display: flex;
+  align-self: center;
   width: 100%;
   height: 100%;
   object-fit: cover;

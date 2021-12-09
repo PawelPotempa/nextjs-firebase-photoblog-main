@@ -15,6 +15,7 @@ import {
   NavBtnLink,
 } from "../styles/navbarElements";
 import Link from "next/link";
+import { FiLogOut } from "react-icons/fi";
 // import Logo from "../../images/logo.svg";
 
 const Navbar = ({ toggle }) => {
@@ -52,8 +53,7 @@ const Navbar = ({ toggle }) => {
             </NavMenu>
             <Link href="/" passHref>
               <NavLogoContainer>
-                LOGO
-                {/* <NavLogo src={Logo} /> */}
+                <NavLogo src="/logo.jpg" />
               </NavLogoContainer>
             </Link>
             <NavMenu>

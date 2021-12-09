@@ -1,7 +1,6 @@
 import React, { useState } from "react";
+import Image from "next/image";
 import { Modal } from "../components/Modal";
-import Link from "next/link";
-
 import {
   AboutContainer,
   AboutDesc,
@@ -13,6 +12,7 @@ import {
   AboutFB,
   AboutIG,
   AboutContact,
+  AboutSocialLink,
 } from "../styles/aboutElements";
 
 const About = () => {
@@ -60,26 +60,36 @@ const About = () => {
           </p>
         </AboutDesc>
         <AboutPersonal>
-          <AboutPhoto src="/portrait.jpg" />
+          <AboutPhoto>
+            <Image
+              src="/portrait.jpg"
+              height={500}
+              width={500}
+              objectFit="cover"
+              placeholder="blur"
+              blurDataURL="/portrait.jpg"
+              loading="eager"
+            ></Image>
+          </AboutPhoto>
           <AboutDataContainer>
             <AboutData>adresmojejfirmy@gmail.com</AboutData>
             <AboutData>+48 123 456 789</AboutData>
           </AboutDataContainer>
           <AboutSocials>
-            <a
+            <AboutSocialLink
               target="_blank"
               href="https://facebook.com/"
               rel="noopener noreferrer"
             >
               <AboutFB />
-            </a>
-            <a
+            </AboutSocialLink>
+            <AboutSocialLink
               target="_blank"
               href="https://instagram.com/"
               rel="noopener noreferrer"
             >
               <AboutIG />
-            </a>
+            </AboutSocialLink>
           </AboutSocials>
           <AboutContact onClick={openModal}>Kontakt</AboutContact>
         </AboutPersonal>

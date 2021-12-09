@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  grid-gap: 5px;
+  grid-gap: 1rem;
   margin: 80px 60px 20px 60px;
 
   @media screen and (max-width: 1024px) {
@@ -43,7 +43,8 @@ export const Post = styled.div`
   }
 `;
 
-export const Thumbnail = styled.img`
+export const Thumbnail = styled.div`
+  display: flex;
   width: 100%;
   height: 100%;
   object-fit: cover;

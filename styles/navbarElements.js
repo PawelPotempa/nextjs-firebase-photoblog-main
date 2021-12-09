@@ -2,8 +2,9 @@ import styled from "styled-components";
 // import Link from "next/link";
 
 export const Nav = styled.nav`
-  background: ${({ scrollNav }) =>
-    scrollNav ? "black" : "hsla(360, 0%, 100%, 0.7)"};
+  /* background: ${({ scrollNav }) =>
+    scrollNav ? "black" : "hsla(360, 0%, 100%, 0.7)"}; */
+  background: #fff;
   height: 60px;
   width: 100%;
   margin-top: -60px;
@@ -37,14 +38,12 @@ export const NavbarContainer = styled.div`
 
 export const NavLogoContainer = styled.a`
   cursor: pointer;
-  /* display: flex;
-  align-items: center; */
 `;
 
 export const NavLogo = styled.img`
-  width: 150px;
-  height: 60px;
-  justify-content: flex-start;
+  width: 100px;
+  height: 50px;
+  padding: 2.5px 0;
 `;
 
 export const MobileIcon = styled.div`
@@ -66,8 +65,7 @@ export const NavMenu = styled.ul`
   display: flex;
   align-items: center;
   list-style: none;
-  text-align: center;
-  margin-right: 0px;
+  padding: 0;
 
   @media screen and (max-width: 768px) {
     display: none;

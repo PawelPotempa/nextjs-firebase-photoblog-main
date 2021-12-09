@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { IconContext } from "react-icons";
 import {
   PageWrap,
+  FAQIntroduction,
   FAQWrap,
   FAQDropdown,
   FAQMinus,
@@ -59,7 +60,15 @@ const FAQ = () => {
 
   return (
     <IconContext.Provider value={{ color: "##00ffb9", size: "25px" }}>
-      <PageWrap>{showQuestions}</PageWrap>
+      <PageWrap>
+        <FAQIntroduction>
+          Cześć! Poniżej postarałam się odpowiedzieć na niektóre z najczęściej
+          pojawiających się pytań. Pamiętaj, że zawsze możesz się ze mną
+          skontaktować bezpośrednio - wystarczy nacisnąć na przycisk
+          &apos;Kontakt&apos; u góry strony!
+        </FAQIntroduction>
+        {showQuestions}
+      </PageWrap>
     </IconContext.Provider>
   );
 };

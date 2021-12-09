@@ -8,12 +8,16 @@ import {
 } from "firebase/storage";
 import {
   getFirestore,
-  serverTimestamp,
+  addDoc,
   collection,
   doc,
-  addDoc,
   deleteDoc,
+  getDocs,
+  orderBy,
+  query,
+  Timestamp,
   updateDoc,
+  where,
 } from "firebase/firestore";
 import { generateUniqueFileName, uuidv4 } from "../utils/utilityMethods.js";
 
@@ -62,13 +66,13 @@ export async function createPost(post, file, fileName) {
     },
     async () => {
       const url = await getDownloadURL(storageRef);
-      const createdAt = serverTimestamp();
+      const createdAt = Timestamp.now();
       await addDoc(collection(db, "posts"), {
-        createdAt,
         title: post.title,
         slug: `${post.slug.replace(/\s+/g, "-")}-${uuidv4().split("-")[0]}`,
-        coverImage: url,
-        coverImageAlt: post.coverImageAlt,
+        createdAt: JSON.stringify(createdAt.toMillis()),
+        thumbnail: url,
+        thumbnailAlt: post.coverImageAlt,
         content: post.content,
       });
       console.log(url);
@@ -78,7 +82,9 @@ export async function createPost(post, file, fileName) {
 
 export async function createGallery(post, file, fileName) {
   const storageRef = ref(storage, fileName);
+  console.log(storageRef);
   const uploadTask = uploadBytesResumable(storageRef, file);
+  console.log(uploadTask);
 
   uploadTask.on(
     "state_changed",
@@ -112,6 +118,10 @@ export async function createGallery(post, file, fileName) {
 
 export async function deletePost(postId) {
   await deleteDoc(doc(db, `posts/${postId}`));
+}
+
+export async function deleteGalleryItem(postId, slug) {
+  await deleteDoc(doc(db, `posts/images/${slug}/${postId}`));
 }
 
 export async function updatePost(post, file, fileName, postId) {
@@ -173,4 +183,58 @@ export async function updatePost(post, file, fileName, postId) {
       slug: post.slug,
     });
   }
+}
+
+export async function getPosts() {
+  // Initialize an empty array to retrieve results
+  const result = [];
+  try {
+    // Query to retrieve posts where isOnline is true && order by most recent dates
+    const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
+
+    const querySnapshots = await getDocs(q);
+    querySnapshots.forEach((doc) => {
+      result.push({ ...doc.data(), id: doc.id });
+    });
+  } catch (error) {
+    console.log("Error getting documents: ", error);
+  }
+  return result;
+}
+
+export async function getImages() {
+  // Initialize an empty array to retrieve results
+  const result = [];
+  try {
+    // Query to retrieve posts where isOnline is true && order by most recent dates
+    const q = query(collection(db, `posts/images/${slug}`));
+
+    const querySnapshots = await getDocs(q);
+    querySnapshots.forEach((doc) => {
+      result.push({ ...doc.data(), id: doc.id });
+    });
+  } catch (error) {
+    console.log("Error getting documents: ", error);
+  }
+  return result;
+}
+
+export async function getPostBySlug(slug) {
+  let post = new Object();
+
+  try {
+    // Query to retrieve post with:
+    // - where "slug" property is equal to slug passed parameter
+    // - where onLine property is true (avoid to see unpublished posts)
+    const q = query(collection(db, "posts"), where("slug", "==", slug));
+
+    const querySnapshots = await getDocs(q);
+    querySnapshots.forEach((doc) => {
+      post = { ...doc.data(), id: doc.id };
+    });
+  } catch (err) {
+    console.log("Error occured: ", err);
+  }
+
+  return post;
 }

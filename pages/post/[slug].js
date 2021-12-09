@@ -1,11 +1,21 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useAuth } from "../../src/hooks/AuthContext";
 import useSlugFetch from "../../src/hooks/useSlugFetch";
 import useGalleryFetch from "../../src/hooks/useGalleryFetch";
-import { deletePost, createGallery } from "../../src/config/firebase";
 import {
+  deletePost,
+  deleteGalleryItem,
+  createGallery,
+  getPosts,
+  getPostBySlug,
+} from "../../src/config/firebase";
+import {
+  ArticleWrapper,
+  PostWrapper,
+  PostTitle,
+  PostContent,
   SPContainer,
   SPDesc,
   SPDate,
@@ -14,25 +24,64 @@ import {
   SPGalleryItem,
   BigImg,
   TempImg,
+  EditPost,
+  EditPostIcon,
+  DeletePost,
+  DeletePostIcon,
+  AddPost,
+  AddPostLabel,
+  AddPostIcon,
+  SPDelete,
 } from "../../styles/singlepostElements";
 import { MdClose } from "react-icons/md";
 
-const PostPage = () => {
+const PostPage = ({ post }) => {
   const router = useRouter();
   const { currentUser } = useAuth();
-
-  // Fetch document data from Firestore.
-  const { doc } = useSlugFetch(router.query.slug);
-  // Fetch image gallery data from Firestore.
-  const { gallery } = useGalleryFetch(router.query.slug);
 
   const [isLoading, setIsLoading] = useState(false);
   const [files, setFiles] = useState(null);
   const [bigImg, setBigImg] = useState(false);
   const [tempImg, setTempImg] = useState("");
 
+  // Fetch gallery data from Firestore.
+  const { gallery } = useGalleryFetch(router.query.slug);
+
+  // Actively listening for changes in the "files" state, if there are any - attempt to upload images to firebase storage.
+  useEffect(() => {
+    if (files !== null) {
+      for (let i = 0; i < files.length; i++) {
+        createGallery(post, files[i], files[i].name)
+          .then(() => {
+            // Update the isLoading state and navigate to the blog page.
+            setIsLoading(false);
+          })
+          .catch((err) => {
+            // Alert the error and update the isLoading state.
+            alert(err);
+            setIsLoading(false);
+          });
+      }
+    }
+  }, [files]);
+
   // Failsafe. If either one doesn't get fetched immediately, we return null.
-  if (!doc || !gallery) {
+  if (!post || !gallery) {
+    return null;
+  }
+
+  // Check if post 'Object' receives one or more property
+  const postLength = Object.keys(post).length;
+
+  // If post is empty, redirect to 404
+  if (postLength === 0 && typeof window !== "undefined") {
+    router.push("/404");
+    return;
+  }
+
+  // Handle servor error "Cannot read property of..."
+  // If post has no property, return null to redirect user
+  if (postLength === 0) {
     return null;
   }
 
@@ -48,92 +97,46 @@ const PostPage = () => {
     }
   };
 
-  // Attempt to upload multiple images to Firebase Storage.
-  const uploadImages = () => {
-    for (let i = 0; i < files.length; i++) {
-      createGallery(doc[0], files[i], files[i].name)
-        .then(() => {
-          // Update the isLoading state and navigate to the blog page.
-          setIsLoading(false);
-        })
-        .catch((err) => {
-          // Alert the error and update the isLoading state.
-          alert(err);
-          setIsLoading(false);
-        });
-    }
-  };
-
-  const displayImages = gallery.map((g) => {
+  const displayImages = gallery.map((g, index) => {
     return (
       // It's important that EACH child in an array has a unique "key" prop.
-      <SPGalleryItem key={g.slug} onClick={() => getImg(g.url)}>
-        <SPPhoto src={g.url} />
-      </SPGalleryItem>
-    );
-  });
-
-  const displayPost = doc.map((p) => {
-    return (
-      <article key={p.slug}>
-        <Image
-          src={p.coverImage}
-          alt={p.coverImageAlt}
-          loading="eager"
-          layout="fixed"
-          height={500}
-          width={1000}
-        />
-        <div>
-          <h2>{p.title}</h2>
-          {/* <span>{post.timestamp.toDate().toDateString()}</span> */}
-          <p>{p.content}</p>
-        </div>
-      </article>
-    );
-  });
-
-  const getImg = (image) => {
-    setTempImg(image);
-    console.log(image);
-    setBigImg((prev) => !prev);
-  };
-
-  return (
-    <div>
-      <h1>Blog Posts</h1>
-      {displayPost}
-      {currentUser && <a href={`/edit/${router.query.slug}`}>EDIT</a>}
-      {currentUser && (
-        <button
+      <SPGalleryItem key={g.slug}>
+        <SPPhoto src={g.url} onClick={() => getImg(g.url)} />
+        <SPDelete
           onClick={() => {
             const shouldDeletePost = confirm(
               "Are you sure you want to delete this post ?"
             );
             if (shouldDeletePost) {
-              deletePost(doc[0].id).then(() => {
-                router.push("/blog");
-              });
+              deleteGalleryItem(gallery[index].id, router.query.slug);
             }
           }}
         >
-          Delete
-        </button>
-      )}
-      <form>
-        <div>
-          {currentUser && (
-            <input
-              id="coverImage"
-              type="file"
-              multiple
-              accept="image/*"
-              onChange={changeHandler}
-            />
-          )}
-        </div>
-      </form>
-      {currentUser && <button onClick={uploadImages}>Upload</button>}
+          USUN
+        </SPDelete>
+      </SPGalleryItem>
+    );
+  });
+
+  const getImg = (image) => {
+    setTempImg(image);
+    setBigImg((prev) => !prev);
+  };
+
+  return (
+    <ArticleWrapper>
+      <PostWrapper key={post.slug}>
+        <Image
+          src={post.thumbnail}
+          alt={post.thumbnailAlt}
+          loading="eager"
+          objectFit="cover"
+          height={1000}
+          width={3000}
+        />
+        <PostTitle>{post.title}</PostTitle>
+        <PostContent>{post.content}</PostContent>
+      </PostWrapper>
       <SPContainer>
         <>
           <BigImg bigImg={bigImg}>
@@ -143,8 +146,65 @@ const PostPage = () => {
           <SPGallery>{displayImages}</SPGallery>
         </>
       </SPContainer>
-    </div>
+      {currentUser && (
+        <EditPost href={`/edit/${router.query.slug}`}>
+          <EditPostIcon />
+        </EditPost>
+      )}
+      {currentUser && (
+        <DeletePost
+          onClick={() => {
+            const shouldDeletePost = confirm(
+              "Are you sure you want to delete this post ?"
+            );
+            if (shouldDeletePost) {
+              deletePost(post.id).then(() => {
+                router.push("/blog");
+              });
+            }
+          }}
+        >
+          <DeletePostIcon />
+        </DeletePost>
+      )}
+      {currentUser && (
+        <>
+          <AddPostLabel>
+            <AddPost
+              id="coverImage"
+              type="file"
+              multiple
+              accept="image/*"
+              onChange={changeHandler}
+            ></AddPost>
+            <AddPostIcon />
+          </AddPostLabel>
+        </>
+      )}
+    </ArticleWrapper>
   );
 };
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  console.log(posts);
+  const paths = posts.map((post) => ({
+    params: { slug: post.slug },
+  }));
+
+  return { paths, fallback: true };
+}
+
+// Generates props for the post page
+export async function getStaticProps({ params }) {
+  const post = await getPostBySlug(params.slug);
+  console.log(post);
+
+  return {
+    props: {
+      post,
+    },
+  };
+}
 
 export default PostPage;
