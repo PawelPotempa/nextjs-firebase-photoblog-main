@@ -47,8 +47,8 @@ const Edit = () => {
       setFormValues({
         title: `${doc[0].title}`,
         slug: `${doc[0].slug}`,
-        coverImage: "",
-        coverImageAlt: `${doc[0].coverImageAlt}`,
+        thumbnail: "",
+        thumbnailAlt: `${doc[0].coverImageAlt}`,
         content: `${doc[0].content}`,
       });
     }
@@ -56,8 +56,8 @@ const Edit = () => {
       setFormValues({
         title: "",
         slug: "",
-        coverImage: "",
-        coverImageAlt: "",
+        thumbnail: "",
+        thumbnailAlt: "",
         content: "",
       });
     };
@@ -143,16 +143,7 @@ const Edit = () => {
           />
         </div>
         <div>
-          <label htmlFor="slug">Slug</label>
-          <input
-            id="slug"
-            type="text"
-            value={formValues.slug}
-            onChange={valueChangeHandler}
-          />
-        </div>
-        <div>
-          <label htmlFor="coverImage">Cover Image URL</label>
+          <label htmlFor="thumbnail">Thumbnail</label>
           <input
             id="coverImage"
             type="file"

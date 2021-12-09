@@ -102,18 +102,20 @@ const PostPage = ({ post }) => {
       // It's important that EACH child in an array has a unique "key" prop.
       <SPGalleryItem key={g.slug}>
         <SPPhoto src={g.url} onClick={() => getImg(g.url)} />
-        <SPDelete
-          onClick={() => {
-            const shouldDeletePost = confirm(
-              "Are you sure you want to delete this post ?"
-            );
-            if (shouldDeletePost) {
-              deleteGalleryItem(gallery[index].id, router.query.slug);
-            }
-          }}
-        >
-          USUN
-        </SPDelete>
+        {currentUser && (
+          <SPDelete
+            onClick={() => {
+              const shouldDeletePost = confirm(
+                "Are you sure you want to delete this post ?"
+              );
+              if (shouldDeletePost) {
+                deleteGalleryItem(gallery[index].id, router.query.slug);
+              }
+            }}
+          >
+            USUN
+          </SPDelete>
+        )}
       </SPGalleryItem>
     );
   });

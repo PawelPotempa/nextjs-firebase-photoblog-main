@@ -166,10 +166,10 @@ export async function updatePost(post, file, fileName, postId) {
         // const createdAt = serverTimestamp();
         await updateDoc(updatedPost, {
           title: post.title,
+          createdAt: JSON.stringify(Timestamp.now().toMillis()),
+          thumbnail: url,
+          thumbnailAlt: post.coverImageAlt,
           content: post.content,
-          coverImage: url,
-          coverImageAlt: post.coverImageAlt,
-          slug: post.slug,
         });
       }
     );
@@ -179,7 +179,7 @@ export async function updatePost(post, file, fileName, postId) {
     await updateDoc(updatedPost, {
       title: post.title,
       content: post.content,
-      coverImageAlt: post.coverImageAlt,
+      thumbnailAlt: post.thumbnailAlt,
       slug: post.slug,
     });
   }
