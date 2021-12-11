@@ -52,7 +52,7 @@ function BlogPost({ posts }) {
                 priority
               />
             </Thumbnail>
-            <Content>{post.slug}</Content>
+            <Content>{post.title}</Content>
           </a>
         </Post>
       );
@@ -82,12 +82,12 @@ function BlogPost({ posts }) {
           disabledClassName={"pagDisabled"}
           activeClassName={"pagActive"}
         />
+        {currentUser && (
+          <AddPost href="/create">
+            <AddPostIcon />
+          </AddPost>
+        )}
       </PaginationContainer>
-      {currentUser && (
-        <AddPost href="/create">
-          <AddPostIcon />
-        </AddPost>
-      )}
     </Main>
   );
 }

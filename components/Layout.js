@@ -10,7 +10,7 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <div className="content">
+    <div>
       <Navbar toggle={toggle} />
       <Sidebar isOpen={isOpen} toggle={toggle} />
       {children}

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { AnimatePresence } from "framer-motion";
 import { FaBars } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
 import { Modal } from "./Modal";
@@ -36,34 +37,34 @@ const Navbar = ({ toggle }) => {
             </MobileIcon>
             <NavMenu>
               <NavItem>
-                <Link href="/about" passHref>
+                <Link href="/about" passHref scroll={false}>
                   <NavLinks>O MNIE</NavLinks>
                 </Link>
               </NavItem>
               <NavItem>
-                <Link href="/blog" passHref>
+                <Link href="/blog" passHref scroll={false}>
                   <NavLinks>BLOG</NavLinks>
                 </Link>
               </NavItem>
               <NavItem>
-                <Link href="/services" passHref>
+                <Link href="/services" passHref scroll={false}>
                   <NavLinks>OFERTA</NavLinks>
                 </Link>
               </NavItem>
             </NavMenu>
-            <Link href="/" passHref>
+            <Link href="/" passHref scroll={false}>
               <NavLogoContainer>
                 <NavLogo src="/logo.jpg" />
               </NavLogoContainer>
             </Link>
             <NavMenu>
               <NavItem>
-                <Link href="/cennik" passHref>
+                <Link href="/cennik" passHref scroll={false}>
                   <NavLinks>CENNIK</NavLinks>
                 </Link>
               </NavItem>
               <NavItem>
-                <Link href="/faq" passHref>
+                <Link href="/faq" passHref scroll={false}>
                   <NavLinks>FAQ</NavLinks>
                 </Link>
               </NavItem>

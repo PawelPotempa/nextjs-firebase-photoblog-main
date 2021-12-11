@@ -73,7 +73,32 @@ export const NavMenu = styled.ul`
 `;
 
 export const NavItem = styled.li`
-  height: 60px;
+  /* height: 60px; */
+  color: #000;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+
+  display: inline-block;
+  padding: 10px 0px;
+  position: relative;
+
+  :after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: #000;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+  }
+  :hover:after {
+    width: 100%;
+    left: 0;
+  }
 `;
 
 export const NavLinks = styled.a`

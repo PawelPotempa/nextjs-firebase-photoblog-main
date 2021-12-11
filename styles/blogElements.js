@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import { FaTrashAlt, FaPen, FaPlus } from "react-icons/fa";
 
-export const Main = styled.main``;
+export const Main = styled.body`
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+`;
 
 export const Wrapper = styled.div`
   height: 100%;
@@ -104,7 +108,7 @@ export const PaginationContainer = styled.div`
   }
 
   .prevBtn {
-    position: fixed;
+    position: absolute;
     font-size: 3rem;
     z-index: 10;
     user-select: none;
@@ -123,7 +127,7 @@ export const PaginationContainer = styled.div`
   }
 
   .nextBtn {
-    position: fixed;
+    position: absolute;
     font-size: 3rem;
     z-index: 10;
     user-select: none;
@@ -176,11 +180,11 @@ export const AddPostIcon = styled(FaPlus)`
 
 export const AddPost = styled.a`
   cursor: pointer;
-  position: fixed;
+  position: absolute;
+  bottom: 2vh;
+  right: 1rem;
   width: 60px;
   height: 60px;
-  bottom: 20px;
-  right: 20px;
   background-color: #000;
   color: #fff;
   border-radius: 50px;

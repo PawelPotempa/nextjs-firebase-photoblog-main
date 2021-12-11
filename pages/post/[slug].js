@@ -160,9 +160,12 @@ const PostPage = ({ post }) => {
               "Are you sure you want to delete this post ?"
             );
             if (shouldDeletePost) {
-              deletePost(post.id).then(() => {
-                router.push("/blog");
-              });
+              deletePost(post.id);
+              for (let i = 0; i < gallery.length; i++) {
+                deletePost(`images/${post.slug}/${gallery[i].id}`).then(() => {
+                  router.push("/blog");
+                });
+              }
             }
           }}
         >

@@ -20,40 +20,56 @@ const Offer = () => {
       label: "Sesja dziecięca",
       scope: "60 minut, 15 odbitek",
       thumbnail: "portrait.jpg",
-      content:
-        "Jeśli chcesz zapamiętać uśmiech, pierwszy ząbek, roześmiane oczy Twojego Maluszka, to na tej sesji uchwycę to wszystko! Sesja dziecięca to dla mnie zawsze nialada wyzwanie. Są to najbardziej nieprzewidywalne sesje, ale dzięki temu mogę uwiecznić wiele emocji.",
+      content: "Tu wyświetli się opis oferowanej przez Ciebie usługi",
     },
     {
       label: "Sesja noworodkowa",
       scope: "120 minut, 20 odbitek",
       thumbnail: "portrait.jpg",
-      content:
-        "Na sesje noworodkowe zapraszamy rodziny z maluszkami między 5 a 14 dniem życia. Na sesji zadbam o komfort i bezpieczeństwo Twojego dziecka, ale także o kameralną atmosferę dla świeżo upieczonych rodziców. Zapewniam szeroki wybór stylizacji i otwartość na wasze pomysły. Na sesje należy zapisać się jeszcze zanim dziecko przyjdzie na świat.",
+      content: "Tu wyświetli się opis oferowanej przez Ciebie usługi",
     },
     {
       label: "Smash Cake",
       scope: "60 minut, 15 odbitek",
       thumbnail: "portrait.jpg",
+      content: "Tu wyświetli się opis oferowanej przez Ciebie usługi",
     },
     {
       label: "Sesja ciążowa",
       scope: "90 minut, 20 odbitek",
       thumbnail: "portrait.jpg",
-      content: "hehe dziala?",
+      content: "Tu wyświetli się opis oferowanej przez Ciebie usługi",
     },
     {
       label: "Mini-sesja świąteczna",
       scope: "30 minut, 10 odbitek",
       thumbnail: "portrait.jpg",
+      content: "Tu wyświetli się opis oferowanej przez Ciebie usługi",
     },
     {
       label: "Sesja rodzinna",
       scope: "90 minut, 20 odbitek",
       thumbnail: "portrait.jpg",
+      content: "Tu wyświetli się opis oferowanej przez Ciebie usługi",
     },
-    { label: "Sesja narzeczeńska", thumbnail: "portrait.jpg" },
-    { label: "Chrzest", thumbnail: "portrait.jpg" },
-    { label: "Komunia", thumbnail: "portrait.jpg" },
+    {
+      label: "Sesja narzeczeńska",
+      scope: "90 minut, 20 odbitek",
+      thumbnail: "portrait.jpg",
+      content: "Tu wyświetli się opis oferowanej przez Ciebie usługi",
+    },
+    {
+      label: "Chrzest",
+      scope: "90 minut, 20 odbitek",
+      thumbnail: "portrait.jpg",
+      content: "Tu wyświetli się opis oferowanej przez Ciebie usługi",
+    },
+    {
+      label: "Komunia",
+      scope: "90 minut, 20 odbitek",
+      thumbnail: "portrait.jpg",
+      content: "Tu wyświetli się opis oferowanej przez Ciebie usługi",
+    },
   ];
   const [active, setActive] = useState(labels[0]);
   return (

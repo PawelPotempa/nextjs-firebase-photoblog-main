@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
 
 export const HeroContainer = styled.div`
@@ -57,7 +58,7 @@ export const Slide = styled.div`
   transition-duration: 1s ease;
 `;
 
-export const HeroImage = styled.div`
+export const HeroImage = styled(motion.div)`
   display: flex;
   align-self: center;
   width: 100%;
