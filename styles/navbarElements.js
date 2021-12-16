@@ -22,6 +22,7 @@ export const Nav = styled.nav`
 `;
 
 export const NavbarContainer = styled.div`
+  margin-left: calc(100vw - 100%);
   display: flex;
   justify-content: center;
   height: 60px;
