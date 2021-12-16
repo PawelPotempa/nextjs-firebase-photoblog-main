@@ -44,10 +44,10 @@ function BlogPost({ posts }) {
                 src={post.thumbnail}
                 height={600}
                 width={800}
-                quality={100}
+                quality={30}
                 objectFit="cover"
-                // placeholder="blur"
-                // blurDataURL={post.thumbnail}
+                placeholder="blur"
+                blurDataURL={post.thumbnail}
                 loading="eager"
                 priority
               />
@@ -66,7 +66,7 @@ function BlogPost({ posts }) {
   };
 
   return (
-    <Main>
+    <>
       <Wrapper posts={posts}>{displayPosts}</Wrapper>
       <PaginationContainer>
         <ReactPaginate
@@ -88,7 +88,7 @@ function BlogPost({ posts }) {
           </AddPost>
         )}
       </PaginationContainer>
-    </Main>
+    </>
   );
 }
 

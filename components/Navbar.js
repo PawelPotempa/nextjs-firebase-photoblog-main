@@ -54,7 +54,7 @@ const Navbar = ({ toggle }) => {
             </NavMenu>
             <Link href="/" passHref scroll={false}>
               <NavLogoContainer>
-                <NavLogo src="/logo.jpg" />
+                <NavLogo src="/logo.svg" />
               </NavLogoContainer>
             </Link>
             <NavMenu>

@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { useAuth } from "../../src/hooks/AuthContext";
 import useSlugFetch from "../../src/hooks/useSlugFetch";
@@ -65,6 +65,21 @@ const PostPage = ({ post }) => {
     }
   }, [files]);
 
+  useEffect(() => {
+    document.addEventListener("keydown", keyPress);
+    return () => document.removeEventListener("keydown", keyPress);
+  }, [keyPress]);
+
+  const keyPress = useCallback(
+    (e) => {
+      if (e.key === "Escape") {
+        console.log("test");
+        setBigImg(false);
+      }
+    },
+    [setBigImg, bigImg]
+  );
+
   // Failsafe. If either one doesn't get fetched immediately, we return null.
   if (!post || !gallery) {
     return null;
@@ -97,6 +112,11 @@ const PostPage = ({ post }) => {
     }
   };
 
+  const getImg = (image) => {
+    setTempImg(image);
+    setBigImg((prev) => !prev);
+  };
+
   const displayImages = gallery.map((g, index) => {
     return (
       // It's important that EACH child in an array has a unique "key" prop.
@@ -119,11 +139,6 @@ const PostPage = ({ post }) => {
       </SPGalleryItem>
     );
   });
-
-  const getImg = (image) => {
-    setTempImg(image);
-    setBigImg((prev) => !prev);
-  };
 
   return (
     <ArticleWrapper>

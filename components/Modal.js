@@ -111,20 +111,20 @@ export const Modal = ({ showModal, setShowModal }) => {
                     ... lub skontaktuj się ze mną bezpośrednio za pośrednictwem
                     którejkolwiek z metod poniżej!
                   </AboutData>
-                  <AboutData>adresmojejfirmy@gmail.com</AboutData>
+                  <AboutData>photopassio.kielce@gmail.pl</AboutData>
                   <AboutData>+48 123 456 789</AboutData>
 
                   <LinksContainer>
                     <AboutSocialLink
                       target="_blank"
-                      href="https://facebook.com/"
+                      href="https://www.facebook.com/PhotoPassio/"
                       rel="noopener noreferrer"
                     >
                       <AboutFB />
                     </AboutSocialLink>
                     <AboutSocialLink
                       target="_blank"
-                      href="https://instagram.com/"
+                      href="https://www.instagram.com/photopassio.ck/"
                       rel="noopener noreferrer"
                     >
                       <AboutIG />

@@ -2,18 +2,18 @@ import styled from "styled-components";
 import { FaTrashAlt, FaPen, FaPlus } from "react-icons/fa";
 
 export const Main = styled.body`
-  height: 100vh;
+  height: 100%
   width: 100vw;
   position: relative;
 `;
 
 export const Wrapper = styled.div`
-  height: 100%;
+  height: calc(100vh - 100px);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(3, 1fr);
   grid-gap: 1rem;
-  margin: 80px 60px 20px 60px;
+  margin: 80px 60px 20px;
 
   @media screen and (max-width: 1024px) {
     grid-template-columns: repeat(3, 1fr);

@@ -62,30 +62,30 @@ const About = () => {
         <AboutPersonal>
           <AboutPhoto>
             <Image
-              src="/portrait.jpg"
+              src="/portrait.webp"
               height={500}
               width={500}
               objectFit="cover"
               placeholder="blur"
-              blurDataURL="/portrait.jpg"
+              blurDataURL="/portrait.webp"
               loading="eager"
             ></Image>
           </AboutPhoto>
           <AboutDataContainer>
-            <AboutData>adresmojejfirmy@gmail.com</AboutData>
+            <AboutData>photopassio.kielce@gmail.pl</AboutData>
             <AboutData>+48 123 456 789</AboutData>
           </AboutDataContainer>
           <AboutSocials>
             <AboutSocialLink
               target="_blank"
-              href="https://facebook.com/"
+              href="https://www.facebook.com/PhotoPassio/"
               rel="noopener noreferrer"
             >
               <AboutFB />
             </AboutSocialLink>
             <AboutSocialLink
               target="_blank"
-              href="https://instagram.com/"
+              href="https://www.instagram.com/photopassio.ck/"
               rel="noopener noreferrer"
             >
               <AboutIG />

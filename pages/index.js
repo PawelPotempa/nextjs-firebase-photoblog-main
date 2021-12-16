@@ -13,15 +13,31 @@ import {
 const HeroSection = () => {
   const SliderData = [
     {
-      image: `/portrait.jpg`,
+      image: `/hero.jpg`,
       id: "one",
     },
     {
-      image: `/portrait.jpg`,
+      image: `/hero1.jpg`,
       id: "two",
     },
     {
-      image: `/portrait.jpg`,
+      image: `/hero2.jpg`,
+      id: "three",
+    },
+    {
+      image: `/hero3.jpg`,
+      id: "three",
+    },
+    {
+      image: `/hero4.jpg`,
+      id: "three",
+    },
+    {
+      image: `/hero5.jpg`,
+      id: "three",
+    },
+    {
+      image: `/hero6.jpg`,
       id: "three",
     },
   ];
@@ -52,7 +68,7 @@ const HeroSection = () => {
       <>
         {index === counter ? <SlideActive /> : <Slide />}
         {index === counter && (
-          <AnimatePresence initial="false">
+          <AnimatePresence exitBeforeEnter initial="false">
             <HeroImage
               key={slide.id}
               initial={{ opacity: 0 }}
@@ -65,12 +81,12 @@ const HeroSection = () => {
             >
               <Image
                 src={slide.image}
-                height={3112}
-                width={4096}
+                height={1500}
+                width={3000}
                 objectFit="cover"
-                placeholder="blur"
                 blurDataURL={slide.image}
                 loading="eager"
+                priority
               />
             </HeroImage>
           </AnimatePresence>

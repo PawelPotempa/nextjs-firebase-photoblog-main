@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
 
 export const HeroContainer = styled.div`
-  background: #0c0c0c;
+  /* background: #0c0c0c; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -64,4 +64,5 @@ export const HeroImage = styled(motion.div)`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: brightness(110%) saturate(120%);
 `;

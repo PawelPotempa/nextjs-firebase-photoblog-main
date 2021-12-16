@@ -81,7 +81,7 @@ export async function createPost(post, file, fileName) {
 }
 
 export async function createGallery(post, file, fileName) {
-  const storageRef = ref(storage, fileName);
+  const storageRef = ref(storage, generateUniqueFileName(fileName));
   console.log(storageRef);
   const uploadTask = uploadBytesResumable(storageRef, file);
   console.log(uploadTask);

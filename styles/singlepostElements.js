@@ -36,12 +36,12 @@ export const SPDesc = styled.div`
 `;
 export const SPDate = styled.div``;
 export const SPGallery = styled.div`
-  width: 100%;
+  width: 80vw;
   height: 100%;
   margin: 0 auto;
   padding: 10px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-auto-rows: 250px;
   grid-auto-flow: dense;
   grid-gap: 10px;
@@ -80,7 +80,7 @@ export const SPGalleryItem = styled.div`
 
   :nth-child(7n + 1) {
     grid-column: span 2;
-    grid-row: span 2;
+    grid-row: span 3;
   }
 
   @media screen and (max-width: 480px) {
@@ -99,6 +99,7 @@ export const SPPhoto = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top;
   transition: all 0.5s ease;
 
   :hover {

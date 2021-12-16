@@ -7,23 +7,15 @@ function MyApp({ Component, pageProps, router }) {
   return (
     <AuthProvider>
       <Layout>
-        <AnimatePresence initial="false">
+        <AnimatePresence exitBeforeEnter initial={false}>
           <motion.div
             key={router.route}
-            layout
-            initial="hidden"
-            animate="enter"
-            exit="exit"
-            transition={{ type: "linear" }}
-            variants={{
-              hidden: { opacity: 0, x: -200, y: 0 },
-              enter: { opacity: 1, x: 0, y: 0 },
-              exit: { opacity: 0, x: 0, y: -200 },
-            }}
+            initial={{ opacity: 0, x: "-100vw", scale: 0.8 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            exit={{ opacity: 0, x: "100vw", scale: 1.2 }}
+            transition={{ type: "linear", damping: 20, stiffness: 100 }}
           >
-            <motion.div layout>
-              <Component {...pageProps} />
-            </motion.div>
+            <Component {...pageProps} />
           </motion.div>
         </AnimatePresence>
       </Layout>
