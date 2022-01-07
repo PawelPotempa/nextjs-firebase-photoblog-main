@@ -38,11 +38,10 @@ export const SPDesc = styled.div`
 export const SPDate = styled.div``;
 export const SPGallery = styled.div`
   width: 80vw;
-  height: 100%;
+  /* height: 100%; */
   margin: 0 auto;
   padding: 10px;
   display: grid;
-  position: static;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-auto-rows: 250px;
   grid-auto-flow: dense;
@@ -69,6 +68,7 @@ export const SPGallery = styled.div`
 export const SPGalleryItem = styled.div`
   position: relative;
   background-color: #d7d7d8;
+  display: flex;
   overflow: hidden;
   width: 100%;
   height: 100%;
