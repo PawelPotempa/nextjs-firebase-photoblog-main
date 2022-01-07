@@ -71,7 +71,7 @@ export const SPGalleryItem = styled.div`
   display: flex;
   overflow: hidden;
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   object-fit: cover;
   transition: all 0.5s ease;
 
