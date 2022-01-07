@@ -42,6 +42,7 @@ export const SPGallery = styled.div`
   margin: 0 auto;
   padding: 10px;
   display: grid;
+  position: static;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-auto-rows: 250px;
   grid-auto-flow: dense;
