@@ -1,12 +1,6 @@
 import styled from "styled-components";
 import { FaTrashAlt, FaPen, FaPlus } from "react-icons/fa";
 
-export const Main = styled.body`
-  height: 100%
-  width: 100vw;
-  position: relative;
-`;
-
 export const Wrapper = styled.div`
   height: calc(100vh - 100px);
   display: grid;
@@ -54,32 +48,6 @@ export const Thumbnail = styled.div`
   object-fit: cover;
 `;
 
-export const Delete = styled(FaTrashAlt)`
-  margin: 10px;
-  position: absolute;
-  right: 3%;
-  top: 15%;
-  cursor: pointer;
-  &:hover {
-    transform: scale(1.1);
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-  }
-`;
-
-export const Edit = styled(FaPen)`
-  margin: 10px;
-  position: absolute;
-  right: 3%;
-  top: 5%;
-  cursor: pointer;
-  &:hover {
-    transform: scale(1.1);
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-  }
-`;
-
 export const Content = styled.div`
   text-align: center;
 `;
@@ -108,11 +76,11 @@ export const PaginationContainer = styled.div`
   }
 
   .prevBtn {
-    position: absolute;
+    position: fixed;
     font-size: 3rem;
     z-index: 10;
     user-select: none;
-    top: 45%;
+    top: calc(50% - 40px);
     left: 30px;
   }
 
@@ -127,11 +95,11 @@ export const PaginationContainer = styled.div`
   }
 
   .nextBtn {
-    position: absolute;
+    position: fixed;
     font-size: 3rem;
     z-index: 10;
     user-select: none;
-    top: 45vh;
+    top: calc(50% - 40px);
     right: 30px;
   }
 
@@ -153,9 +121,9 @@ export const PaginationContainer = styled.div`
     border-radius: 50%;
     display: inline-block;
     display: none;
-    @media screen and (max-width: 768px) {
+    /* @media screen and (max-width: 768px) {
       display: none;
-    }
+    } */
   }
 
   .pagBtn a:hover {
@@ -173,15 +141,10 @@ export const PaginationContainer = styled.div`
   }
 `;
 
-export const AddPostIcon = styled(FaPlus)`
-  margin-top: 22px;
-  z-index: 999;
-`;
-
 export const AddPost = styled.a`
   cursor: pointer;
-  position: absolute;
-  bottom: 2vh;
+  position: fixed;
+  bottom: 1rem;
   right: 1rem;
   width: 60px;
   height: 60px;
@@ -191,4 +154,9 @@ export const AddPost = styled.a`
   text-align: center;
   box-shadow: 2px 2px 3px #999;
   z-index: 1000;
+`;
+
+export const AddPostIcon = styled(FaPlus)`
+  margin-top: 22px;
+  z-index: 999;
 `;

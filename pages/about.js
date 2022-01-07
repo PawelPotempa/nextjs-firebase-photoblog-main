@@ -27,53 +27,40 @@ const About = () => {
       <Modal showModal={showModal} setShowModal={setShowModal} />
       <AboutContainer>
         <AboutDesc>
-          <h1>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </h1>
+          <h1>Cześć!</h1>
           <h2>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Jestem Iwona, opowiem Wam coś o sobie. Zawodowo jestem higienistką
+            stomatologiczną. Profesjonalną higienizację, którą wykonuję łącze ze
+            swoją pasją-fotografią. W gabinecie dbam o piękny uśmiech moich
+            pacjentów, a z aparatem w dłoni uwieczniam Wasze wspomnienia.
           </h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            Pasja do fotografii uwalnia moje pokłady kreatywności. W moich
+            kadrach staram się uchwycić emocje, jakie towarzyszą Wam podczas
+            ważnych uroczystości czy rodzinnego spaceru. Na Naszych spotkaniach
+            dbam o luźną atmosferę, co gwarantuje naturalne zdjęcia pełne
+            miłości.
           </p>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            Jeśli jesteś na mojej stronie to pierwszy krok do spotkania ze mną
+            :) Dzwoń, pisz - twórzmy razem piękne kadry!
           </p>
         </AboutDesc>
         <AboutPersonal>
           <AboutPhoto>
             <Image
-              src="/portrait.webp"
+              src="/portrait.jpg"
               height={500}
               width={500}
               objectFit="cover"
               placeholder="blur"
-              blurDataURL="/portrait.webp"
+              blurDataURL="/portrait.jpg"
               loading="eager"
             ></Image>
           </AboutPhoto>
           <AboutDataContainer>
             <AboutData>photopassio.kielce@gmail.pl</AboutData>
-            <AboutData>+48 123 456 789</AboutData>
+            <AboutData>+48 793 014 475</AboutData>
           </AboutDataContainer>
           <AboutSocials>
             <AboutSocialLink

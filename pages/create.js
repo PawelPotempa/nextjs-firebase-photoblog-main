@@ -2,6 +2,21 @@ import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import { protectedRoute } from "../src/hooks/useProtectedRoute";
 import { createPost } from "../src/config/firebase";
+import {
+  Wrapper,
+  MainForm,
+  Title,
+  InputWrapper,
+  InputWindow,
+  InputLabel,
+  FileInputWrapper,
+  FileInputLabel,
+  FileInputWindow,
+  TextareaWrapper,
+  TextareaWindow,
+  SubmitBtn,
+  PreviewImage,
+} from "../styles/createElements";
 
 const Create = () => {
   const router = useRouter();
@@ -70,7 +85,7 @@ const Create = () => {
 
     // Alert and prevent the post from being created if there are missing values.
     if (missingValues.length > 1 || file === null) {
-      alert(`You're missing these fields: ${missingValues.join(", ")}`);
+      alert(`Wypełnij brakujące pola!`);
       return;
     }
 
@@ -84,7 +99,7 @@ const Create = () => {
       .then(() => {
         // Update the isLoading state and navigate to the home page.
         setIsLoading(false);
-        alert("Your article has been created");
+        alert("Twój post został dodany!");
         router.push("/blog");
       })
       .catch((err) => {
@@ -95,30 +110,30 @@ const Create = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={submitHandler}>
-        <h1>Create a new post</h1>
-        <div>
-          <label htmlFor="title">Title</label>
-          <input
+    <Wrapper>
+      <MainForm onSubmit={submitHandler}>
+        <Title>Create a new post</Title>
+        <InputWrapper>
+          <InputLabel htmlFor="title">Tytuł</InputLabel>
+          <InputWindow
             id="title"
             type="text"
             value={formValues.title}
             onChange={valueChangeHandler}
           />
-        </div>
-        <div>
-          <label htmlFor="slug">Slug</label>
-          <input
+        </InputWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="slug">Treść linka</InputLabel>
+          <InputWindow
             id="slug"
             type="text"
             value={formValues.slug}
             onChange={valueChangeHandler}
           />
-        </div>
-        <div>
-          <label htmlFor="thumbnail">Thumbnail URL</label>
-          <input
+        </InputWrapper>
+        <FileInputWrapper>
+          <FileInputLabel htmlFor="thumbnail">Dodaj miniaturę</FileInputLabel>
+          <FileInputWindow
             id="thumbnail"
             type="file"
             ref={fileInputRef}
@@ -126,30 +141,32 @@ const Create = () => {
             accept="image/*"
             onChange={fileChangeHandler}
           />
-        </div>
-        <div>
-          <label htmlFor="thumbnailAlt">Thumbnail Alt</label>
-          <input
+        </FileInputWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="thumbnailAlt">
+            Tekst alternatywny miniatury
+          </InputLabel>
+          <InputWindow
             id="thumbnailAlt"
             type="text"
             value={formValues.thumbnailAlt}
             onChange={valueChangeHandler}
           />
-        </div>
-        <div>
-          <label htmlFor="content">Content</label>
-          <textarea
+        </InputWrapper>
+        <TextareaWrapper>
+          <InputLabel htmlFor="content">Treść</InputLabel>
+          <TextareaWindow
             id="content"
             value={formValues.content}
             onChange={valueChangeHandler}
           />
-        </div>
-        <button type="submit" disabled={isLoading}>
-          {isLoading ? "Creating..." : "Create"}
-        </button>
-      </form>
-      <img src={preview} />
-    </div>
+        </TextareaWrapper>
+        <SubmitBtn type="submit" disabled={isLoading}>
+          {isLoading ? "Dodawanie posta..." : "Dodaj post"}
+        </SubmitBtn>
+      </MainForm>
+      <PreviewImage src={preview} />
+    </Wrapper>
   );
 };
 

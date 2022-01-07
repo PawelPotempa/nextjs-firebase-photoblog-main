@@ -14,12 +14,13 @@ export const PostWrapper = styled.section`
 
 export const PostTitle = styled.h1`
   text-align: center;
+  font-size: 2rem;
   color: #000;
   width: 100%;
 `;
 
 export const PostContent = styled.p`
-  padding: 0 15%;
+  padding: 0 20%;
   width: 100%;
   text-align: justify;
 `;
@@ -181,8 +182,8 @@ export const EditPost = styled.a`
   background-color: #000;
   color: #fff;
   border-radius: 50px;
+  border-color: black;
   text-align: center;
-  box-shadow: 2px 2px 3px #999;
   z-index: 1000;
 `;
 

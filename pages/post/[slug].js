@@ -126,7 +126,7 @@ const PostPage = ({ post }) => {
           <SPDelete
             onClick={() => {
               const shouldDeletePost = confirm(
-                "Are you sure you want to delete this post ?"
+                "Jesteś pewna że chcesz usunąć to zdjęcie?"
               );
               if (shouldDeletePost) {
                 deleteGalleryItem(gallery[index].id, router.query.slug);
@@ -155,13 +155,11 @@ const PostPage = ({ post }) => {
         <PostContent>{post.content}</PostContent>
       </PostWrapper>
       <SPContainer>
-        <>
-          <BigImg bigImg={bigImg}>
-            <TempImg src={tempImg} onClick={() => setBigImg((prev) => !prev)} />
-            <MdClose onClick={() => setBigImg((prev) => !prev)} />
-          </BigImg>
-          <SPGallery>{displayImages}</SPGallery>
-        </>
+        <BigImg bigImg={bigImg}>
+          <TempImg src={tempImg} onClick={() => setBigImg((prev) => !prev)} />
+          <MdClose onClick={() => setBigImg((prev) => !prev)} />
+        </BigImg>
+        <SPGallery>{displayImages}</SPGallery>
       </SPContainer>
       {currentUser && (
         <EditPost href={`/edit/${router.query.slug}`}>
@@ -172,7 +170,7 @@ const PostPage = ({ post }) => {
         <DeletePost
           onClick={() => {
             const shouldDeletePost = confirm(
-              "Are you sure you want to delete this post ?"
+              "Jesteś pewna że chcesz usunąć ten post?"
             );
             if (shouldDeletePost) {
               deletePost(post.id);

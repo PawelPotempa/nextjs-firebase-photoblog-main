@@ -5,7 +5,6 @@ import ReactPaginate from "react-paginate";
 import { useAuth } from "../src/hooks/AuthContext";
 import { getPosts } from "../src/config/firebase";
 import {
-  Main,
   Wrapper,
   Post,
   Thumbnail,

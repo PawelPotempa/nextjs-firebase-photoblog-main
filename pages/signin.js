@@ -31,7 +31,7 @@ const SignIn = () => {
       setLoading(true);
       await signin(auth, emailRef.current.value, passwordRef.current.value);
       setLoading(false);
-      //   Router.push("/");
+      Router.push("/blog");
     } catch {
       setLoading(false);
       setError("Failed to sign in");

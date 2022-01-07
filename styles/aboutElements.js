@@ -30,25 +30,20 @@ export const AboutContainer = styled.div`
 export const AboutDesc = styled.div`
   height: 100%;
   grid-column: 1/3;
-  padding: 5vw;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+
   @media screen and (max-width: 1024px) {
     font-size: 0.7rem;
   }
 
   @media screen and (max-width: 768px) {
-    font-size: 0.6rem;
     padding-top: 0;
   }
 
   @media screen and (max-width: 600px) {
-    font-size: 0.5rem;
-
-    p {
-      font-size: 0.6rem;
-    }
   }
 `;
 export const AboutPersonal = styled.div`
