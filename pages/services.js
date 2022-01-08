@@ -76,9 +76,6 @@ const Offer = () => {
     <Container key="t.label">
       {labels.map((t) => (
         <>
-          {/* <Content key={t.content} active={active === t.label}>
-            {t.content}
-          </Content> */}
           <Tab
             key={t.label}
             onClick={() => setActive(t.label)}

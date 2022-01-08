@@ -238,7 +238,7 @@ export const LeftInput = styled.input`
 `;
 
 export const LeftTextarea = styled.textarea`
-  min-height: 90px;
+  min-height: 60px;
   width: 100%;
   border: 2px solid rgba(0, 0, 0, 0);
   outline: none;

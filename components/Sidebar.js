@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   SidebarContainer,
   Icon,
@@ -9,37 +9,46 @@ import {
   SideBtnWrap,
   SidebarRoute,
 } from "../styles/sidebarElements";
+import { Modal } from "./Modal";
 import Link from "next/link";
 
 const Sidebar = ({ isOpen, toggle }) => {
+  // Toggle modal
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => {
+    setShowModal((prev) => !prev);
+  };
+
   return (
-    <SidebarContainer isOpen={isOpen} onClick={toggle}>
+    <SidebarContainer isOpen={isOpen}>
       <Icon onClick={toggle}>
         <CloseIcon />
       </Icon>
       <SidebarWrapper>
         <SidebarMenu>
           <Link href="about" passHref onClick={toggle}>
-            <SidebarLink>O MNIE</SidebarLink>
+            <SidebarLink onClick={toggle}>O MNIE</SidebarLink>
           </Link>
           <Link href="blog" passHref onClick={toggle}>
-            <SidebarLink>BLOG</SidebarLink>
+            <SidebarLink onClick={toggle}>BLOG</SidebarLink>
           </Link>
 
           <Link href="services" passHref onClick={toggle}>
-            <SidebarLink>OFERTA</SidebarLink>
+            <SidebarLink onClick={toggle}>OFERTA</SidebarLink>
           </Link>
-          <Link href="price" passHref onClick={toggle}>
-            <SidebarLink>CENNIK</SidebarLink>
+          <Link href="pricing" passHref onClick={toggle}>
+            <SidebarLink onClick={toggle}>CENNIK</SidebarLink>
           </Link>
           <Link href="faq" passHref onClick={toggle}>
-            <SidebarLink>FAQ</SidebarLink>
+            <SidebarLink onClick={toggle}>FAQ</SidebarLink>
           </Link>
         </SidebarMenu>
         <SideBtnWrap>
-          <SidebarRoute to="/">Kontakt</SidebarRoute>
+          <SidebarRoute onClick={openModal}>Kontakt</SidebarRoute>
         </SideBtnWrap>
       </SidebarWrapper>
+      <Modal showModal={showModal} setShowModal={setShowModal} />
     </SidebarContainer>
   );
 };

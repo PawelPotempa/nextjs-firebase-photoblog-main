@@ -9,18 +9,24 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: calc(100vh - 60px);
-  padding: 60px 120px 0 120px;
+  padding: 60px 60px 0 60px;
 
   @media screen and (max-width: 1024px) {
     grid-template-columns: repeat(2, 1fr);
     transition: 0.8s all ease;
     padding: 60px 60px 0 60px;
+    grid-gap: 2.5rem;
   }
 
   @media screen and (max-width: 768px) {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     transition: 0.8s all ease;
     padding: 60px 30px 0 30px;
+  }
+
+  @media screen and (max-width: 425px) {
+    grid-template-columns: repeat(1, 1fr);
+    transition: 0.8s all ease;
   }
 
   @media screen and (max-width: 600px) {
@@ -30,15 +36,15 @@ export const Container = styled.div`
 
 export const Tab = styled.button`
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
   justify-self: center;
   height: 25vh;
-  width: 25vw;
+  width: 100%;
   border: 0px solid #000;
   background: white;
   cursor: pointer;
+  padding: 0px;
 
   ${({ active }) =>
     active &&
@@ -47,28 +53,13 @@ export const Tab = styled.button`
   `}
 
   @media screen and (max-width: 1024px) {
-    height: 30vh;
-    width: 40vw;
+    width: 100%;
   }
 
   @media screen and (max-width: 768px) {
-    height: 35vh;
-    width: 70vw;
+    width: 100%;
   }
 `;
-
-// export const Content = styled.div`
-//   background: red;
-//   height: 100%;
-//   display: none;
-
-//   ${({ active }) =>
-//     active &&
-//     `
-//     display: block;
-//   }
-//   `}
-// `;
 
 export const ThumbnailWrapper = styled.div`
   position: relative;

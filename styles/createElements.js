@@ -35,6 +35,7 @@ export const InputWindow = styled.input`
   height: 1.5rem;
   padding: 16px 16px;
   margin-bottom: 16px;
+  border-color: black;
   border-radius: 4px;
 `;
 
@@ -76,6 +77,10 @@ export const TextareaWrapper = styled.div`
 export const TextareaWindow = styled.textarea`
   width: 100%;
   height: 10rem;
+  padding: 16px 16px;
+  margin-bottom: 16px;
+  border-color: black;
+  border-radius: 4px;
 `;
 
 export const SubmitBtn = styled.button`

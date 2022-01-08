@@ -20,9 +20,18 @@ export const PostTitle = styled.h1`
 `;
 
 export const PostContent = styled.p`
-  padding: 0 20%;
+  padding: 0 10%;
   width: 100%;
   text-align: justify;
+  white-space: pre-line;
+
+  @media screen and (max-width: 768px) {
+    padding: 0 60px;
+  }
+
+  @media screen and (max-width: 425px) {
+    padding: 0 30px;
+  }
 `;
 
 export const SPContainer = styled.div`
@@ -99,7 +108,7 @@ export const SPGalleryItem = styled.div`
 
 export const SPPhoto = styled.img`
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   object-fit: cover;
   object-position: top;
   transition: all 0.5s ease;

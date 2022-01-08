@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { FiPlus, FiMinus } from "react-icons/fi";
+import { motion } from "framer-motion";
 
 export const PageWrap = styled.div`
   margin-top: 60px;
@@ -9,13 +10,39 @@ export const PageWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
+  position: relative;
+`;
+
+export const Container = styled.div`
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90vw;
+  top: 5%;
+`;
+
+export const FAQLink = styled.span`
+  font-weight: bold;
 `;
 
 export const FAQIntroduction = styled.p`
   font-size: 2rem;
   width: 90%;
-  padding-bottom: 100px;
+  text-align: justify;
+  /* padding-bottom: 100px; */
+
+  @media screen and (max-width: 1024px) {
+    font-size: 1.6rem;
+  }
+
+  @media screen and (max-width: 425px) {
+    font-size: 1.2rem;
+  }
+
+  @media screen and (max-width: 320px) {
+    font-size: 1rem;
+  }
 `;
 
 export const FAQWrap = styled.div`
@@ -43,7 +70,7 @@ export const FAQWrap = styled.div`
   }
 `;
 
-export const FAQDropdown = styled.div`
+export const FAQDropdown = styled(motion.div)`
   width: 80%;
   border-left: solid 3px rgba(19, 153, 200, 1);
   margin: 1rem;

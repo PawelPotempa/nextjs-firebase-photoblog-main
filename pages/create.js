@@ -112,7 +112,7 @@ const Create = () => {
   return (
     <Wrapper>
       <MainForm onSubmit={submitHandler}>
-        <Title>Create a new post</Title>
+        <Title>Stwórz nowy post</Title>
         <InputWrapper>
           <InputLabel htmlFor="title">Tytuł</InputLabel>
           <InputWindow

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { IconContext } from "react-icons";
+import { AnimatePresence } from "framer-motion";
 import {
   PageWrap,
   FAQIntroduction,
@@ -7,6 +8,8 @@ import {
   FAQDropdown,
   FAQMinus,
   FAQPlus,
+  FAQLink,
+  Container,
 } from "../styles/faqElements";
 
 const FAQ = () => {
@@ -14,7 +17,10 @@ const FAQ = () => {
     {
       question: "Jak się ubrać na sesję zdjęciową?",
       answer:
-        "Przede wszystkim pamiętajcie, aby Wasze kolory współgrały ze sobą i nie były jaskrawe. Ważnym jest, aby na zdjęciu nic nie odciągało od Was uwagi. Załóżcie ubrania w stonowanych kolorach, bez wzorów i aplikacji. TUTAJ zamieściłam kilka podpowiedzi. Wszystkie ubrania zarówno dla mam jak i dla maluszków są systematycznie prane i dezynfekowane.",
+        "Przede wszystkim pamiętajcie, aby Wasze kolory współgrały ze sobą i nie były jaskrawe. Ważnym jest, aby na zdjęciu nic nie odciągało od Was uwagi. Załóżcie ubrania w stonowanych kolorach, bez wzorów i aplikacji. ",
+      link: "https://firebasestorage.googleapis.com/v0/b/nextjs-photoblog.appspot.com/o/clothes_example.jpeg?alt=media&token=59169600-8df1-4527-a71f-8678616b7f2e",
+      answer2:
+        " zamieściłam kilka podpowiedzi. Wszystkie ubrania zarówno dla mam jak i dla maluszków są systematycznie prane i dezynfekowane.",
     },
     {
       question: "Co zabrać ze sobą na sesję zdjęciową?",
@@ -44,30 +50,45 @@ const FAQ = () => {
 
   const showQuestions = FAQData.map((item, index) => {
     return (
-      <>
+      <AnimatePresence>
         <FAQWrap onClick={() => toggle(index)} key={index}>
           <span>{clicked === index ? <FAQMinus /> : <FAQPlus />}</span>
           <h1>{item.question}</h1>
         </FAQWrap>
         {clicked === index ? (
-          <FAQDropdown clicked={clicked}>
-            <p>{item.answer}</p>
+          <FAQDropdown
+            clicked={clicked}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            <p>
+              {item.answer}
+              {item.link ? (
+                <FAQLink>
+                  <a href={item.link}>TUTAJ</a>
+                </FAQLink>
+              ) : null}
+              {item.answer2}
+            </p>
           </FAQDropdown>
         ) : null}
-      </>
+      </AnimatePresence>
     );
   });
 
   return (
     <IconContext.Provider value={{ color: "##00ffb9", size: "25px" }}>
       <PageWrap>
-        <FAQIntroduction>
-          Cześć! Poniżej postarałam się odpowiedzieć na niektóre z najczęściej
-          pojawiających się pytań. Pamiętaj, że zawsze możesz się ze mną
-          skontaktować bezpośrednio - wystarczy nacisnąć na przycisk
-          &apos;Kontakt&apos; u góry strony!
-        </FAQIntroduction>
-        {showQuestions}
+        <Container>
+          <FAQIntroduction>
+            Cześć! Poniżej postarałam się odpowiedzieć na niektóre z najczęściej
+            pojawiających się pytań. Pamiętaj, że zawsze możesz się ze mną
+            skontaktować bezpośrednio - wystarczy nacisnąć na przycisk
+            &apos;Kontakt&apos; u góry strony!
+          </FAQIntroduction>
+          {showQuestions}
+        </Container>
       </PageWrap>
     </IconContext.Provider>
   );

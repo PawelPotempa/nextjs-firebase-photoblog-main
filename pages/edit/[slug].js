@@ -3,6 +3,21 @@ import { useRouter } from "next/router";
 import useSlugFetch from "../../src/hooks/useSlugFetch";
 import { updatePost } from "../../src/config/firebase";
 import { protectedRoute } from "../../src/hooks/useProtectedRoute";
+import {
+  Wrapper,
+  MainForm,
+  Title,
+  InputWrapper,
+  InputWindow,
+  InputLabel,
+  FileInputWrapper,
+  FileInputLabel,
+  FileInputWindow,
+  TextareaWrapper,
+  TextareaWindow,
+  SubmitBtn,
+  PreviewImage,
+} from "../../styles/createElements";
 
 const Edit = () => {
   const router = useRouter();
@@ -44,6 +59,8 @@ const Edit = () => {
   // We make sure to reset the state after the component unmounts.
   useEffect(() => {
     if (doc && doc[0] !== undefined) {
+      setPreview(doc[0].thumbnail);
+      console.log(preview);
       setFormValues({
         title: `${doc[0].title}`,
         slug: `${doc[0].slug}`,
@@ -119,7 +136,7 @@ const Edit = () => {
       .then(() => {
         // Update the isLoading state and navigate to the home page.
         setIsLoading(false);
-        alert("Your article has been created");
+        alert("Post został edytowany");
         router.push(`/post/${formValues.slug}`);
       })
       .catch((err) => {
@@ -130,21 +147,21 @@ const Edit = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={submitHandler}>
-        <h1>Create a new post</h1>
-        <div>
-          <label htmlFor="title">Title</label>
-          <input
+    <Wrapper>
+      <MainForm onSubmit={submitHandler}>
+        <Title>Edytuj posta</Title>
+        <InputWrapper>
+          <InputLabel htmlFor="title">Tytuł</InputLabel>
+          <InputWindow
             id="title"
             type="text"
             value={formValues.title}
             onChange={valueChangeHandler}
           />
-        </div>
-        <div>
-          <label htmlFor="thumbnail">Thumbnail</label>
-          <input
+        </InputWrapper>
+        <FileInputWrapper>
+          <FileInputLabel htmlFor="thumbnail">Dodaj miniaturę</FileInputLabel>
+          <FileInputWindow
             id="thumbnail"
             type="file"
             ref={fileInputRef}
@@ -152,30 +169,32 @@ const Edit = () => {
             accept="image/*"
             onChange={fileChangeHandler}
           />
-        </div>
-        <div>
-          <label htmlFor="thumbnailAlt">Thumbnail Alt</label>
-          <input
+        </FileInputWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="thumbnailAlt">
+            Tekst alternatywny miniatury
+          </InputLabel>
+          <InputWindow
             id="thumbnailAlt"
             type="text"
             value={formValues.thumbnailAlt}
             onChange={valueChangeHandler}
           />
-        </div>
-        <div>
-          <label htmlFor="content">Content</label>
-          <textarea
+        </InputWrapper>
+        <TextareaWrapper>
+          <InputLabel htmlFor="content">Treść</InputLabel>
+          <TextareaWindow
             id="content"
             value={formValues.content}
             onChange={valueChangeHandler}
           />
-        </div>
-        <button type="submit" disabled={isLoading}>
-          {isLoading ? "Creating..." : "Create"}
-        </button>
-      </form>
-      <img src={preview} />
-    </div>
+        </TextareaWrapper>
+        <SubmitBtn type="submit" disabled={isLoading}>
+          {isLoading ? "Edytowanie..." : "Edytuj"}
+        </SubmitBtn>
+      </MainForm>
+      <PreviewImage src={preview} />
+    </Wrapper>
   );
 };
 

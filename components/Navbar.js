@@ -59,7 +59,7 @@ const Navbar = ({ toggle }) => {
             </Link>
             <NavMenu>
               <NavItem>
-                <Link href="/cennik" passHref scroll={false}>
+                <Link href="/pricing" passHref scroll={false}>
                   <NavLinks>CENNIK</NavLinks>
                 </Link>
               </NavItem>

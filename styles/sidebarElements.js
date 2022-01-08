@@ -69,16 +69,40 @@ export const SideBtnWrap = styled.div`
   justify-content: center;
 `;
 
-export const SidebarRoute = styled.a`
-  border-radius: 50px;
+// export const SidebarRoute = styled.a`
+//   border-radius: 50px;
+//   background: #000;
+//   white-space: nowrap;
+//   padding: 16px 64px;
+//   color: #fff;
+//   font-size: 16px;
+//   font-weight: 500;
+//   outline: none;
+//   border: 1px solid white;
+//   cursor: pointer;
+//   transition: all 0.2s ease-in-out;
+//   text-decoration: none;
+
+//   &:hover {
+//     transition: all 0.2s ease-in-out;
+//     background: #fff;
+//     color: #010606;
+//     border-color: #000;
+//   }
+// `;
+
+export const SidebarRoute = styled.button`
+  width: 5rem;
+  height: 2.2rem;
+  padding: 4px 8px;
+  font-size: 1rem;
+  border-radius: 2rem;
   background: #000;
   white-space: nowrap;
-  padding: 16px 64px;
   color: #fff;
-  font-size: 16px;
   font-weight: 500;
   outline: none;
-  border: 1px solid white;
+  border: 1px solid #fff;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
