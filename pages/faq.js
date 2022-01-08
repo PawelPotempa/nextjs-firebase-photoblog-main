@@ -50,8 +50,8 @@ const FAQ = () => {
 
   const showQuestions = FAQData.map((item, index) => {
     return (
-      <AnimatePresence>
-        <FAQWrap onClick={() => toggle(index)} key={index}>
+      <AnimatePresence key={index}>
+        <FAQWrap onClick={() => toggle(index)}>
           <span>{clicked === index ? <FAQMinus /> : <FAQPlus />}</span>
           <h1>{item.question}</h1>
         </FAQWrap>
