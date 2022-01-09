@@ -40,6 +40,22 @@ const HeroSection = () => {
       image: `/hero6.jpg`,
       id: "three",
     },
+    {
+      image: `/hero7.jpg`,
+      id: "three",
+    },
+    {
+      image: `/hero8.jpg`,
+      id: "three",
+    },
+    {
+      image: `/hero9.jpg`,
+      id: "three",
+    },
+    {
+      image: `/hero10.jpg`,
+      id: "three",
+    },
   ];
 
   const [counter, setCounter] = useState(0);
@@ -75,18 +91,18 @@ const HeroSection = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{
-                x: { type: "spring", stiffness: 300, damping: 300 },
-                opacity: { duration: 1 },
+                type: "spring",
+                stiffness: 100,
+                damping: 20,
               }}
             >
               <Image
                 src={slide.image}
                 height={1500}
                 width={3000}
+                quality={80}
                 objectFit="cover"
-                blurDataURL={slide.image}
                 loading="eager"
-                priority
               />
             </HeroImage>
           </AnimatePresence>
