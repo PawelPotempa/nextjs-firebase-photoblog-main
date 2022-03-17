@@ -26,7 +26,7 @@ export const Icon = styled.div`
   margin-left: 32px;
   margin-top: 32px;
   text-decoration: none;
-  color: #fff;
+  color: #000;
   font-weight: 700;
   font-size: 32px;
 

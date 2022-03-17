@@ -50,9 +50,6 @@ const SignIn = () => {
     <>
       <Container>
         <FormWrap>
-          <Link passHref="/">
-            <Icon>dolla</Icon>
-          </Link>
           <FormContent>
             <Form onSubmit={handleSubmit}>
               {!currentUser && <FormH1>Sign in to your account</FormH1>}
