@@ -118,7 +118,6 @@ export async function deletePost(postId) {
   await deleteDoc(doc(db, `posts/${postId}`));
 }
 
-// Pamietac zeby usunac to i zamienic z tym wyzej. Szkoda pamieci hehe.
 export async function deleteGalleryItem(postId, slug) {
   await deleteDoc(doc(db, `posts/images/${slug}/${postId}`));
 }
