@@ -1,5 +1,5 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
-import { getAuth, signOut } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import {
   getStorage,
   ref,
@@ -54,13 +54,13 @@ export async function createPost(post, file, fileName) {
     (err) => {
       switch (error.code) {
         case "storage/unknown":
-          alert("Une erreur inconnue est survenue, réessayer plus tard");
+          alert("Wystąpił nieznany błąd, spróbuj ponownie później");
           break;
         case "storage/unauthorized":
-          alert("Vous n'êtes pas autorisé à réaliser cette action");
+          alert("Nie masz uprawnień do wykonania tej czynności");
           break;
         case "storage/retry-limit-exceeded":
-          alert("Temps limite de l'opération atteint. Essayez plus tard");
+          alert("Osiągnięto limit czasu działania. Spróbuj później");
           break;
       }
     },
@@ -95,23 +95,21 @@ export async function createGallery(post, file, fileName) {
     (err) => {
       switch (error.code) {
         case "storage/unknown":
-          alert("Une erreur inconnue est survenue, réessayer plus tard");
+          alert("Wystąpił nieznany błąd, spróbuj ponownie później");
           break;
         case "storage/unauthorized":
-          alert("Vous n'êtes pas autorisé à réaliser cette action");
+          alert("Nie masz uprawnień do wykonania tej czynności");
           break;
         case "storage/retry-limit-exceeded":
-          alert("Temps limite de l'opération atteint. Essayez plus tard");
+          alert("Osiągnięto limit czasu działania. Spróbuj później");
           break;
       }
     },
     async () => {
       const url = await getDownloadURL(storageRef);
-      // const createdAt = serverTimestamp();
       await addDoc(collection(db, `posts/images/${post.slug}`), {
         url,
       });
-      // console.log(url);
     }
   );
 }
@@ -151,13 +149,13 @@ export async function updatePost(post, file, fileName, postId) {
       (error) => {
         switch (error.code) {
           case "storage/unknown":
-            alert("Une erreur inconnue est survenue, réessayer plus tard");
+            alert("Wystąpił nieznany błąd, spróbuj ponownie później");
             break;
           case "storage/unauthorized":
-            alert("Vous n'êtes pas autorisé à réaliser cette action");
+            alert("Nie masz uprawnień do wykonania tej czynności");
             break;
           case "storage/retry-limit-exceeded":
-            alert("Temps limite de l'opération atteint. Essayez plus tard");
+            alert("Osiągnięto limit czasu działania. Spróbuj później");
             break;
         }
       },
@@ -175,8 +173,8 @@ export async function updatePost(post, file, fileName, postId) {
       }
     );
   } else {
-    //* Defines app's behaviour if the picture stay the same
-    //* thumbnail is not referenced on updateDoc to prevent errors
+    // Defines app's behaviour if the picture stays the same
+    // Thumbnail is not referenced on updateDoc to prevent errors
     await updateDoc(updatedPost, {
       title: post.title,
       content: post.content,
@@ -198,7 +196,7 @@ export async function getPosts() {
       result.push({ ...doc.data(), id: doc.id });
     });
   } catch (error) {
-    console.log("Error getting documents: ", error);
+    console.log("Błąd podczas pobieranie dokumentów: ", error);
   }
   return result;
 }
@@ -215,7 +213,7 @@ export async function getImages() {
       result.push({ ...doc.data(), id: doc.id });
     });
   } catch (error) {
-    console.log("Error getting documents: ", error);
+    console.log("Błąd podczas pobierania dokumentów: ", error);
   }
   return result;
 }
@@ -224,7 +222,7 @@ export async function getPostBySlug(slug) {
   let post = new Object();
 
   try {
-    // Query to retrieve post with:
+    // Query to retrieve posts:
     // - where "slug" property is equal to slug passed parameter
     // - where onLine property is true (avoid to see unpublished posts)
     const q = query(collection(db, "posts"), where("slug", "==", slug));
@@ -234,7 +232,7 @@ export async function getPostBySlug(slug) {
       post = { ...doc.data(), id: doc.id };
     });
   } catch (err) {
-    console.log("Error occured: ", err);
+    console.log("Wystąpił błąd: ", err);
   }
 
   return post;

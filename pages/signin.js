@@ -5,7 +5,6 @@ import {
   FormContent,
   Form,
   FormH1,
-  FormLabel,
   FormInput,
   FormButton,
   FormText,
@@ -34,7 +33,7 @@ const SignIn = () => {
       Router.push("/blog");
     } catch {
       setLoading(false);
-      setError("Failed to sign in");
+      setError("Nie udało się zalogować");
     }
   }
 
@@ -43,7 +42,7 @@ const SignIn = () => {
       await signout();
       setError("");
     } catch {
-      setError("Failed to log out");
+      setError("Nie udało się wylogować");
     }
   }
 
@@ -51,7 +50,7 @@ const SignIn = () => {
     <>
       <Container>
         <FormWrap>
-          <Link href="/">
+          <Link passHref="/">
             <Icon>dolla</Icon>
           </Link>
           <FormContent>
@@ -62,7 +61,6 @@ const SignIn = () => {
                   Welcome, {currentUser.email.split("@")[0] + "!"}
                 </FormH1>
               )}
-              {/* <FormLabel htmlFor="for"></FormLabel> */}
               {!currentUser && (
                 <FormInput
                   type="email"
@@ -71,7 +69,6 @@ const SignIn = () => {
                   ref={emailRef}
                 ></FormInput>
               )}
-              {/* <FormLabel htmlFor="for"></FormLabel> */}
               {!currentUser && (
                 <FormInput
                   type="password"

@@ -61,7 +61,7 @@ export const Modal = ({ showModal, setShowModal }) => {
         (error) => {
           console.log(error.text);
           alert(
-            "Oops! Coś poszło nie tak. Spróbuj ponownie bądź wybierz inną formę kontaktu."
+            "Oops! Coś poszło nie tak. Spróbuj ponownie, bądź wybierz inną formę kontaktu."
           );
         }
       );

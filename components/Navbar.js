@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { AnimatePresence } from "framer-motion";
 import { FaBars } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
 import { Modal } from "./Modal";
@@ -13,11 +12,8 @@ import {
   NavItem,
   NavLinks,
   ContactBtn,
-  NavBtnLink,
 } from "../styles/navbarElements";
 import Link from "next/link";
-import { FiLogOut } from "react-icons/fi";
-// import Logo from "../../images/logo.svg";
 
 const Navbar = ({ toggle }) => {
   // Toggle modal

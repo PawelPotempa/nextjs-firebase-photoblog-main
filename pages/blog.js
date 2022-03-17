@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import ReactPaginate from "react-paginate";
-// import useFirestore from "../src/hooks/useFirestore";
 import { useAuth } from "../src/hooks/AuthContext";
 import { getPosts } from "../src/config/firebase";
 import {

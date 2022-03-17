@@ -94,7 +94,7 @@ const Edit = () => {
       setFile(selected);
     } else {
       setFile(null);
-      alert("Please select an image file (png or jpg)");
+      alert("Wybierz plik o dozwolonym formacie (png or jpg)");
     }
   };
 
@@ -120,7 +120,7 @@ const Edit = () => {
 
     // Alert and prevent the post from being created if there are missing values.
     if (missingValues.length > 1) {
-      alert(`You're missing these fields: ${missingValues.join(", ")}`);
+      alert(`Proszę wypełnić następujące pola: ${missingValues.join(", ")}`);
       return;
     }
 

@@ -1,12 +1,6 @@
 import { useState, useEffect } from "react";
 import { db } from "../config/firebase";
-import {
-  collection,
-  query,
-  onSnapshot,
-  where,
-  getDocs,
-} from "firebase/firestore";
+import { collection, query, onSnapshot, where } from "firebase/firestore";
 
 const useSlugFetch = (slug) => {
   const [doc, setDoc] = useState(null);

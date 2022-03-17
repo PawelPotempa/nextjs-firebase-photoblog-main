@@ -59,7 +59,7 @@ const Create = () => {
       setFile(selected);
     } else {
       setFile(null);
-      alert("Please select an image file (png or jpg)");
+      alert("Wybierz plik o dozwolonym formacie (png or jpg)");
     }
   };
 
