@@ -1,34 +1,79 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Photopassio - Photoblog application
 
-## Getting Started
+<hr>
+A photoblog application made for a friend of mine. She does plan to use it on a daily basis in the future, meanwhile - it was a great educational project for me!</br>
 
-First, run the development server:
+## The project
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+<hr>
+The project consists of six major features:</br></br>
+<li>Add new blog posts
+<li>Edit and delete existing blog posts
+<li>Each blogpost has it's own gallery which is fully responsive
+<li>Every gallery item can be easily deleted
+<li>The images appear in the gallery as they're uploaded, without reloading the page
+<li>Contact form allows the user to send an e-mail to the admin, via a library called EmailJS
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Minor features include:
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+<li>Image carousel
+<li>Pagination
+<li>FAQ
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## What I've learned
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+<hr>
+<ul>
+<li>NextJS:
+<ul> 
+<li>Using the NextJS framework
+<li>Using getStaticProps() to make static data calls
+<li>Using the built-in routing and link for navigation
+<li>Using the image optimization component next/image, along with its props
+<li>Working with [slug]
+</ul>
+<li>Firebase
+<ul>
+<li>Using Firebase Storage and Firestore as a whole
+<li>Authentication via e-mail / password
+<li>Storing images to Firebase Storage
+<li>Adding data to Firebase Firestore
+<li>Basic structure of a NoSQL database
+<li>Handling errors
+</ul>
+<li>React.js
+<ul>
+<li>Creating a custom hook
+<li>Honed my skills with basic hooks such as useState, useEffect, useRef
+<li>React Context
+<li>Improved my skills with passing props between components
+</ul>
+<li>Styled-components
+<ul>
+<li>First experience with CSS-in-JS
+<li>Using props while styling elements
+<li>Proper folder and file structure
+</ul>
+<li> Vercel
+<ul>
+<li> Application hosting
+<li> Continuous integration via GitHub
+</ul>
+</ul>
 
-## Learn More
+## Technologies
 
-To learn more about Next.js, take a look at the following resources:
+<hr>
+<img align="center" alt="HTML5" src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/><img align="center" alt="JavaScript" src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E"/><img align="center" alt="React.js" src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"/><img align="center" alt="NextJS"  src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white"/><img align="center" alt="Firebase" src="https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black"/><img align="center" alt="CSS3" src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/><img align="center" alt="Styled-components"  src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white"/>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Resources
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+<hr>
+<li> <a href="https://firebase.google.com/docs">Firebase documentation 🔥</a>
+<li> <a href="https://nextjs.org/docs">NextJS documentation 🤓</a>
+<li> <a href="https://reactjs.org/">React.js documentation ⚛️</a>
+<li> <a href="https://www.emailjs.com/">EmailJS documentation 📧</a>
+<li> <a href="https://stackoverflow.com/">StackOverflow, as usual 🙃</a>
+<li> <a href="https://ashleemboyer.com/blog/series/nextjs-firebase-blog">A tutorial on creating a basic blog with NextJS and Firebase by Ashlee M. Boyer ❤️</a>
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Thanks for reading!
